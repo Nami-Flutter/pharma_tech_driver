@@ -67,14 +67,6 @@ class ListProductsPrice extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // Text(
-                          //  " ${oneOrderModel?.details?[index].product?.unit}"??'',
-                          //   style: TextStyles()
-                          //       .getRegularStyle(fontSize: 12.sp,)
-                          //       .customColor(AppColors.primaryColor),
-                          //   maxLines: 1,
-                          //  // overflow: TextOverflow.ellipsis,
-                          // ),
                           SizedBox(
                             width:MediaQuery.of(context).size.width * 0.1,
                           ),
