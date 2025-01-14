@@ -73,8 +73,7 @@ class AuthViewModel with ChangeNotifier {
   }
 
   ///calling APIs Functions
-  Future<ApiResponse> login(
-      {required String phone, required BuildContext context}) async {
+  Future<ApiResponse> login({required String phone, required BuildContext context}) async {
     _isLoading = true;
     notifyListeners();
     final LoginBody _body = LoginBody(phone: phone, phoneCode: _phoneCode);
