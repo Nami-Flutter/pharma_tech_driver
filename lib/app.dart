@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       // locale: supportedLocales[0],
-      title: 'Pharma Tech',
+      title: 'Pharma Tech Driver',
       //theme: getAppTheme(),
 
       theme: lightTheme,
