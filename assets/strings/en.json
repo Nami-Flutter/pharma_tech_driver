@@ -24,6 +24,8 @@
   "youReachedMaximumPurchaseLimitProduct": "You have reached the maximum purchase limit for this product",
   "passwordMustLeastCharactersLong": "Password must be at least 6 characters long.",
   "passwordRequired": "Password required",
+  "receiveOrder": "Receive the order",
+  "successfullyDelivered": "Successfully delivered",
 
 
   "tittleLogin": "Hey, you ..!",
@@ -143,6 +145,7 @@
   "branchMustSelected": "Branch must be selected",
   "cancellingOrder?": "Cancelling Order?",
   "new": "New",
+  "theNew": "New",
   "accepted": "Accepted",
   "refused": "Refused",
   "on_progress": "On Progress",

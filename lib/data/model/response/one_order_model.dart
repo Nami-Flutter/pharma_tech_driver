@@ -1,42 +1,44 @@
 
-class OrdersModel {
-  List<OneOrder>? data;
+class OneOrderModel {
+  Data? data;
   String? message;
   int? code;
 
-  OrdersModel({
+  OneOrderModel({
     this.data,
     this.message,
     this.code,
   });
 
-  factory OrdersModel.fromJson(Map<String, dynamic> json) => OrdersModel(
-    data: json["data"] == null ? [] : List<OneOrder>.from(json["data"]!.map((x) => OneOrder.fromJson(x))),
+  factory OneOrderModel.fromJson(Map<String, dynamic> json) => OneOrderModel(
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
     message: json["message"],
     code: json["code"],
   );
 
   Map<String, dynamic> toJson() => {
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": data?.toJson(),
     "message": message,
     "code": code,
   };
 }
 
-class OneOrder {
+class Data {
   int? id;
   int? delegateId;
   int? orderId;
   int? adminId;
   String? status;
+  num? total;
   Order? order;
   List<Detail>? details;
   String? createdAt;
 
-  OneOrder({
+  Data({
     this.id,
     this.delegateId,
     this.orderId,
+    this.total,
     this.adminId,
     this.status,
     this.order,
@@ -44,12 +46,13 @@ class OneOrder {
     this.createdAt,
   });
 
-  factory OneOrder.fromJson(Map<String, dynamic> json) => OneOrder(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
     delegateId: json["delegate_id"],
     orderId: json["order_id"],
     adminId: json["admin_id"],
     status: json["status"],
+    total: json["total"],
     order: json["order"] == null ? null : Order.fromJson(json["order"]),
     details: json["details"] == null ? [] : List<Detail>.from(json["details"]!.map((x) => Detail.fromJson(x))),
     createdAt: json["created_at"],
@@ -61,6 +64,7 @@ class OneOrder {
     "order_id": orderId,
     "admin_id": adminId,
     "status": status,
+    "total": total,
     "order": order?.toJson(),
     "details": details == null ? [] : List<dynamic>.from(details!.map((x) => x.toJson())),
     "created_at": createdAt,
@@ -271,14 +275,14 @@ class Order {
   bool? isPoints;
   int? pointsCount;
   int? pointsValue;
-  int? driverCost;
-  double? netTotal;
-  int? taxValue;
-  int? deliveryPrice;
-  double? grandTotal;
-  dynamic notes;
+  num? driverCost;
+  num? netTotal;
+  num? taxValue;
+  num? deliveryPrice;
+  num? grandTotal;
+  String? notes;
   String? createdAt;
-  DateTime? date;
+  String? date;
   String? time;
 
   Order({
@@ -325,13 +329,13 @@ class Order {
     pointsCount: json["points_count"],
     pointsValue: json["points_value"],
     driverCost: json["driver_cost"],
-    netTotal: json["net_total"]?.toDouble(),
+    netTotal: json["net_total"],
     taxValue: json["tax_value"],
     deliveryPrice: json["delivery_price"],
-    grandTotal: json["grand_total"]?.toDouble(),
+    grandTotal: json["grand_total"],
     notes: json["notes"],
     createdAt: json["created_at"],
-    date: json["date"] == null ? null : DateTime.parse(json["date"]),
+    date: json["date"],
     time: json["time"],
   );
 
@@ -358,7 +362,7 @@ class Order {
     "grand_total": grandTotal,
     "notes": notes,
     "created_at": createdAt,
-    "date": "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+    "date": date,
     "time": time,
   };
 }

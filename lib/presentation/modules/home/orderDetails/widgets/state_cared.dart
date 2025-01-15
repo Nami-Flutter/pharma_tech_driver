@@ -74,7 +74,7 @@ class _CustomStateCaredState extends State<CustomStateCared> {
           ),
           VerticalSpace(10.h),
           StateOrder(state: widget.title),
-          if (widget.title == LocaleKeys.received) EditOrderButton(),
+          // if (widget.title == LocaleKeys.received) EditOrderButton(),
           // if (widget.title == LocaleKeys.representative || widget.title == LocaleKeys.progress)
           //   PhoneCared(
           //       name: widget.name, phone: widget.phone, image:widget.image)

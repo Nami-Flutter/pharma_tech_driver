@@ -50,6 +50,8 @@
   "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",
   "successfullyRegistered": "سجلت بنجاح",
   "createAccountLogin": "يجب انشاء حساب للدخول",
+  "receiveOrder": "استلام الطلب",
+  "successfullyDelivered": "تم التوصيل بنجاح",
 
 
 
@@ -97,6 +99,7 @@
 
 
   "myOrders": "طلباتي",
+  "theNew": "الجديدة",
   "current": "الحالية",
   "Previous": "السابقة",
   "details": "التفاصيل",

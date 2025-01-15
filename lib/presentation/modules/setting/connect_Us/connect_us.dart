@@ -1,4 +1,3 @@
-import 'package:pharma_tech_driver/presentation/component/inputs/new/customTextFormField.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
@@ -24,9 +23,9 @@ class _ConnectUsState extends State<ConnectUs> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
-  // final TextEditingController _phoneController = TextEditingController();
 
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   final TextEditingController _subjectController = TextEditingController();
 
@@ -72,20 +71,20 @@ class _ConnectUsState extends State<ConnectUs> {
               hint: LocaleKeys.name.tr(),
               controller: _nameController,
             ),
-            // VerticalSpace(12.h),
-            // CustomTextFieldNormal(
-            //   iconSVG: Assets.phoneIcon,
-            //   hint: LocaleKeys.phoneNumber.tr(),
-            //   textInputAction: TextInputAction.done,
-            //   type: TextInputType.phone,
-            //   controller: _phoneController,
-            // ),
             VerticalSpace(12.h),
             CustomTextFieldNormal(
-              iconSVG: Assets.email1,
-              hint: LocaleKeys.email.tr(),
-              controller: _emailController,
+              iconSVG: Assets.phoneIcon,
+              hint: LocaleKeys.phoneNumber.tr(),
+              textInputAction: TextInputAction.done,
+              type: TextInputType.phone,
+              controller: _phoneController,
             ),
+            // VerticalSpace(12.h),
+            // CustomTextFieldNormal(
+            //   iconSVG: Assets.email1,
+            //   hint: LocaleKeys.email.tr(),
+            //   controller: _emailController,
+            // ),
             VerticalSpace(12.h),
             CustomTextFieldNormal(
               iconSVG: Assets.supject,
@@ -107,8 +106,8 @@ class _ConnectUsState extends State<ConnectUs> {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
         String _name = _nameController.text;
-        // String _phone = _phoneController.text;
-        String _email = _emailController.text;
+        String _phone = _phoneController.text;
+        // String _email = _emailController.text;
         String _subject = _subjectController.text;
         String _message = _messageController.text;
         //
@@ -117,7 +116,6 @@ class _ConnectUsState extends State<ConnectUs> {
         //     content: Text('nameIsRequired'.tr()),
         //     backgroundColor: Colors.red,
         //   ));
-        //   return;
         // } else if (_email.isEmpty) {
         //   ScaffoldMessenger.of(context).showSnackBar( SnackBar(
           //   content: Text("emailIsRequired".tr()),
@@ -125,12 +123,12 @@ class _ConnectUsState extends State<ConnectUs> {
           // ));
           // return;
         // } else
-          if (_email.isValidEmail() == false) {
-          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-            content: Text("checkYourEmail".tr()),
-            backgroundColor: Colors.red,
-          ));
-          return;
+        //   if (_email.isValidEmail() == false) {
+        //   ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+        //     content: Text("checkYourEmail".tr()),
+        //     backgroundColor: Colors.red,
+        //   ));
+        //   return;
         // } else if (_subject.isEmpty) {
         //   ScaffoldMessenger.of(context).showSnackBar( SnackBar(
         //     content: Text("phoneIsRequired".tr()),
@@ -143,31 +141,29 @@ class _ConnectUsState extends State<ConnectUs> {
         //     backgroundColor: Colors.red,
         //   ));
         //   return;
-        } else {
+        // } else {
          ContactUsBody _body = ContactUsBody();
          _body.name = _name;
-          _body.email = _email;
-          // _body.phone = _phone;
+          // _body.email = _email;
+          _body.phone = _phone;
           _body.subject = _subject;
          _body.message = _message;
 
-
-
           Provider.of<SettingViewModel>(context, listen: false).contactUsApi(context,_body).then((value) {
-            if (value.response?.statusCode == 200) {
-              ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                content: Text('sentSuccesfully'.tr()),
-                backgroundColor: Colors.green,
-              ));
-
-              Navigator.pop(context);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                content: Text('SomeThingWrong'.tr()),
-                backgroundColor: Colors.green,
-              ));
-            }
+            // if (value.response?.statusCode == 200) {
+            //   ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            //     content: Text('sentSuccesfully'.tr()),
+            //     backgroundColor: Colors.green,
+            //   ));
+            //
+            //   Navigator.pop(context);
+            // } else {
+            //   ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            //     content: Text('SomeThingWrong'.tr()),
+            //     backgroundColor: Colors.green,
+            //   ));
+            // }
          });
       }}}}
 
-}
+

@@ -19,6 +19,7 @@ import '../../../core/resources/font_manager.dart';
 import '../../../core/resources/locale_keys.g.dart';
 import '../../component/svg_icon.dart';
 import 'Notifications/Notifications.dart';
+import 'Notifications/provider/notifications_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   SaveUserData saveUserData =getIt();
   @override
   void initState() {
+    Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();
     _loadData();
     super.initState();
   }
@@ -101,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.symmetric(horizontal:2.w),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r),color: AppColors.green),
                       child: Text(
-                        '9',
+                        context.read<NotificationViewModel>().notificationModel?.data?.length.toString()??'0',
                         style: const TextStyle()
                             .bodyStyle(fontSize: FontSize.s10.sp)
                             .customColor(AppColors.white),
@@ -131,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(width: 166.w,
+                        SizedBox(width: 110.w,
                           child: CustomButton(
                             onTap: () async {
                               setState(() {
@@ -147,12 +149,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? AppColors.white
                                 : AppColors.gray,
                             color: isClicked == 0 ? AppColors.primaryColor : AppColors.grayLight,
-                            title:LocaleKeys.current.tr(),
-
+                            title:LocaleKeys.theNew.tr(),
                           ),
                         ),
                         SizedBox(
-                          width: 166.w,
+                          width: 110.w,
                           child: CustomButton(
                             onTap: () async {
                               setState(() {
@@ -164,12 +165,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                   curve: Curves.easeInOut);
                               _loadData();
                             },
-                            title: LocaleKeys.previous.tr(),
+                            title: LocaleKeys.current.tr(),
                             // width: 108.67.w,
                             textColor: isClicked == 1
                                 ? AppColors.white
                                 : AppColors.gray,
                             color: isClicked == 1 ? AppColors.primaryColor : AppColors.grayLight,),
+                        ),
+                        SizedBox(
+                          width: 110.w,
+                          child: CustomButton(
+                            onTap: () async {
+                              setState(() {
+                                isClicked = 2;
+                                data.status='ended';
+                              });
+                              controller.animateToPage(isClicked,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.easeInOut);
+                              _loadData();
+                            },
+                            title: LocaleKeys.previous.tr(),
+                            // width: 108.67.w,
+                            textColor: isClicked == 2
+                                ? AppColors.white
+                                : AppColors.gray,
+                            color: isClicked == 2 ? AppColors.primaryColor : AppColors.grayLight,),
                         ),
                       ],
                     ),
@@ -184,13 +205,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: EdgeInsets.only(right: 16.w, left: 16.w),
                           child: CustomListView(
-                            type: 'new',
+                            model: data.ordersModel,
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(right: 16.w, left: 16.w),
                           child: CustomListView(
-                            type: 'on_way',
+                            model: data.ordersModel,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 16.w, left: 16.w),
+                          child: CustomListView(
+                            model: data.ordersModel,
                           ),
                         )
                       ],

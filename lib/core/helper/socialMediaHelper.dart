@@ -1,23 +1,48 @@
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
 class SocialMediaHelper {
 
   void openLink(String url) async {
+    print('Attempting to launch URL: $url');
+
+    // Validate the URL
+    if (url.isEmpty || !url.startsWith('http')) {
+      throw 'Invalid URL: $url';
+    }
+
     final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri,mode: LaunchMode.externalApplication);
+
+    // Check if the URL can be launched
+    bool canLaunch = await canLaunchUrl(uri);
+    print('Can launch URL: $canLaunch');
+
+    if (canLaunch) {
+      // Launch the URL
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+        webOnlyWindowName: '_blank', // Opens in a new tab (web only)
+      );
     } else {
+      // Handle the case where no app is available
+      print('No app found to handle the URL: $url');
       throw 'Could not launch $url';
     }
   }
-  void launchPhoneCall(String phoneNumber) async {
+  Future<void> launchPhoneCall(String phoneNumber) async {
     final url = 'tel:$phoneNumber';
 
-    if (await canLaunch(url)) {
-      await launch(url);
+    // Check and request CALL_PHONE permission
+    if (await Permission.phone.request().isGranted) {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
     } else {
-      throw 'Could not launch $url';
+      throw 'Phone permission not granted';
     }
   }
 

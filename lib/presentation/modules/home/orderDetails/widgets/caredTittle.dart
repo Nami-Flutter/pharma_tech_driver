@@ -2,17 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/helper/socialMediaHelper.dart';
+import 'package:pharma_tech_driver/data/model/response/one_order_model.dart';
 import 'package:pharma_tech_driver/presentation/component/buttons/custom_button.dart';
 import 'package:pharma_tech_driver/presentation/modules/home/orderDetails/widgets/phone_cared.dart';
 import '../../../../../../core/res/text_styles.dart';
 import '../../../../../core/resources/app_assets.dart';
 import '../../../../../core/resources/app_colors.dart';
 import '../../../../../core/resources/locale_keys.g.dart';
+import '../../../../../data/model/response/home_orders_model.dart';
 import '../../../../component/spaces.dart';
 import '../../../../component/svg_icon.dart';
+import 'edit_order_button.dart';
 
 class CustomCaredTittle extends StatefulWidget {
-  const CustomCaredTittle({super.key});
+  const CustomCaredTittle({super.key, required this.oneOrder});
+  final OneOrderModel? oneOrder ;
   @override
   State<CustomCaredTittle> createState() => _CustomCaredTittleState();
 }
@@ -42,22 +46,13 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                   ),
                   HorizontalSpace(12.w),
                   Text(
-                    '#345',
+                    '#${widget.oneOrder?.data?.orderId}',
                     style: TextStyles()
                         .getRegularStyle(fontSize: 14.sp)
                         .customColor(AppColors.black),
                   ),
                 ],
               ),
-              CustomButton(width: 150.w,
-                  height: 50.h,
-                  color: Colors.transparent,
-                  isRounded: false,
-                  borderColor: AppColors.black,
-                  textStyle: TextStyles().getRegularStyle(fontSize: 14.sp).customColor(AppColors.black),
-                  title: "إلغاء التوصيل",
-                  textColor: AppColors.black,
-                  onTap: (){})
             ],
           ),
           VerticalSpace(20.h),
@@ -69,7 +64,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
               ),
               HorizontalSpace(12.w),
               Text(
-                '12/12/2012',
+                widget.oneOrder?.data?.order?.date ?? '',
                 style: TextStyles()
                     .getRegularStyle(fontSize: 14.sp)
                     .customColor(AppColors.black),
@@ -87,7 +82,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                 ),
               ),
               Text(
-                 '1:20am',
+                widget.oneOrder?.data?.order?.time ?? '',
                 style: TextStyles()
                     .getRegularStyle(fontSize: 14.sp)
                     .customColor(AppColors.black),
@@ -103,7 +98,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
               ),
               HorizontalSpace(12.w),
               InkWell(onTap: (){
-                socialMediaHelper.openGoogleMapByAddress('egypt');
+                socialMediaHelper.openGoogleMapByAddress(widget.oneOrder?.data?.order?.address??'');
               },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +114,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                     SizedBox(
                       width:MediaQuery.of(context).size.width*0.7,
                       child: Text(
-                        'egypt',
+                        widget.oneOrder?.data?.order?.address??'',
                         style: TextStyles()
                             .getRegularStyle(fontSize: 14.sp)
                             .customColor(AppColors.black),
@@ -152,52 +147,52 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                   ),
                   VerticalSpace(3.h),
                   Text(
-                    'werfwe'.tr(),
+                    widget.oneOrder?.data?.order?.payType??'',
                     style: TextStyles()
                         .getRegularStyle(fontSize: 14.sp)
                         .customColor(AppColors.black),
                   ),
-                  VerticalSpace(3.h),
-                  // data?.payType == "online"?
-                      Row(
-                        children: [
-                          Text(
-                            LocaleKeys.paymentNotMade.tr(),
-                            style: TextStyles()
-                                .getRegularStyle(fontSize: 14.sp)
-                                .customColor(AppColors.black),
-                          ),
-                          SizedBox(width: 25.w,),
-                          // data?.isPaid == false ?
-                              InkWell(
-                                onTap: (){
-                                  // Provider.of<ShoppingCaredViewModel>(context, listen: false).payment(context,data?.id ?? 0);
-                                },
-                                child: Container(
-                                  height: 35.h,
-                                  width: 70.w,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.primaryColor,
-                                    borderRadius: BorderRadius.circular(7)
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                     LocaleKeys.pay.tr(),
-                                      style: TextStyles()
-                                          .getTitleStyle(fontSize: 14.sp)
-                                          .customColor(AppColors.white),
-                                    ),
-                                  ),
-                                ),
-                              )
-                        ],
-                      )
+                  // VerticalSpace(3.h),
+                  // widget.oneOrder?.order?.payType != "cash"?SizedBox():
+                  //     Row(
+                  //       children: [
+                  //         Text(
+                  //           LocaleKeys.paymentNotMade.tr(),
+                  //           style: TextStyles()
+                  //               .getRegularStyle(fontSize: 14.sp)
+                  //               .customColor(AppColors.black),
+                  //         ),
+                  //         SizedBox(width: 25.w,),
+                  // widget.oneOrder?.order?.isPaid == true ?SizedBox():
+                  //             InkWell(
+                  //               onTap: (){
+                  //                 // Provider.of<ShoppingCaredViewModel>(context, listen: false).payment(context,data?.id ?? 0);
+                  //               },
+                  //               child: Container(
+                  //                 height: 35.h,
+                  //                 width: 70.w,
+                  //                 decoration: BoxDecoration(
+                  //                   color: AppColors.primaryColor,
+                  //                   borderRadius: BorderRadius.circular(7)
+                  //                 ),
+                  //                 child: Center(
+                  //                   child: Text(
+                  //                    LocaleKeys.pay.tr(),
+                  //                     style: TextStyles()
+                  //                         .getTitleStyle(fontSize: 14.sp)
+                  //                         .customColor(AppColors.white),
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             )
+                  //       ],
+                  //     )
                 ],
               ),
             ],
           ),
-          VerticalSpace(20.h),
-          // (data?.notes!=null)?
+          ( widget.oneOrder?.data?.order?.notes==null)?SizedBox(): VerticalSpace(20.h),
+          ( widget.oneOrder?.data?.order?.notes!=null)?
           Row(
             children: [
               const SVGIcon(
@@ -219,7 +214,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                   SizedBox(
                     width:MediaQuery.of(context).size.width*0.7,
                     child: Text(
-                      'data?.notes??',
+                       widget.oneOrder?.data?.order?.notes??'',
                       style: TextStyles()
                           .getRegularStyle(fontSize: 14.sp)
                           .customColor(AppColors.black),
@@ -230,7 +225,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                 ],
               ),
             ],
-          ),
+          ):SizedBox(),
           VerticalSpace(20.h),
           Row(
             children: [
@@ -254,10 +249,10 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                     width:MediaQuery.of(context).size.width*0.7,
                     child: InkWell(
                       onTap: (){
-                        socialMediaHelper.openGoogleMapByAddress('Egypt');
+                        socialMediaHelper.openGoogleMapByAddress( widget.oneOrder?.data?.order?.addressDetails??'');
                       },
                       child: Text(
-                        'data?.addressDetails??',
+                        widget.oneOrder?.data?.order?.addressDetails??'',
                         style: TextStyles()
                             .getRegularStyle(fontSize: 14.sp)
                             .customColor(AppColors.black),
@@ -271,7 +266,8 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
             ],
           ),
 
-          PhoneCared(name: 'Islam Ali', phone: '01015021067', image: 'ewe',)
+          PhoneCared(name: '${widget.oneOrder?.data?.order?.user?.user?.firstName} ${ widget.oneOrder?.data?.order?.user?.user?.lastName}',
+            phone:  '${ widget.oneOrder?.data?.order?.user?.user?.phoneCode }${widget.oneOrder?.data?.order?.user?.user?.phone}', image:  widget.oneOrder?.data?.order?.user?.user?.image??'',)
 
         ],
       ),

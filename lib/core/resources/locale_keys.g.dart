@@ -78,11 +78,14 @@ abstract class  LocaleKeys {
   static const String message = "message";
   /// my order
   static const String myOrders = 'myOrders';
+  static const String theNew = 'theNew';
   static const String current = 'current';
   static const String previous = 'Previous';
   static const String details = 'details';
   static const String expiredOrder = 'expiredOrder';
   static const String orderDetails = 'orderDetails';
+  static const String receiveOrder = 'receiveOrder';
+  static const String successfullyDelivered = 'successfullyDelivered';
   static const String modify = 'modify';
   static const String received = 'received';
   static const String products = 'products';
@@ -104,6 +107,8 @@ abstract class  LocaleKeys {
   static const String re = 're';
   static const String total = 'total';
   static const String sendOrder = 'sendOrder';
+  static const String new1 = 'new';
+  static const String on_way = 'on_way';
   /// otp screen
   static const theTotal = 'theTotal';
   static const productDetails = 'productDetails';

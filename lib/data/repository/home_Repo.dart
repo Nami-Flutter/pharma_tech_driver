@@ -19,4 +19,34 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> oneOrderRepo(String orderId) async {
+    try {
+      Response response = await dioClient.get(
+          '${AppURL.kOneOrdersURI}?delegate_order_id=$orderId');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> updateOrderRepo(String orderId,status) async {
+    try {
+      Response response = await dioClient.post(AppURL.kUpdateOrderStatusURI,data: FormData.fromMap(
+          {
+            "delegate_order_id":orderId,
+            "status":status,
+          }));
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> notificationsRepo( page) async {
+    try {
+      Response response = await dioClient.get(
+          '${AppURL.kNotificationsURI}?limit=10&page=$page');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

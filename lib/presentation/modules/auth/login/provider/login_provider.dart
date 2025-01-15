@@ -103,6 +103,7 @@ class LoginLogoutViewModel with ChangeNotifier {
       _isLoading = false;
       _emptyDataModel = EmptyDataModel.fromJson(responseModel.response?.data);
       if (_emptyDataModel?.code == 200) {
+        updateFCMToken();
         await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
       } else {
         ToastUtils.showToast(_emptyDataModel?.message ?? "");

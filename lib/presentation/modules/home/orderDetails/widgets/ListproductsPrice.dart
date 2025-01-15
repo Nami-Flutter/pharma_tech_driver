@@ -1,16 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../../../../core/res/text_styles.dart';
 import '../../../../../../../../core/resources/app_colors.dart';
 import '../../../../../../../../core/resources/locale_keys.g.dart';
-import '../../../../../data/datasource/locale/locale_data_source.dart';
-import '../../../../../data/model/response/oneOrderModel.dart';
+import '../../../../../data/model/response/one_order_model.dart';
 
 class ListProductsPrice extends StatelessWidget {
-  const ListProductsPrice({super.key});
+  final List<Detail>? details;
+  const ListProductsPrice({super.key,required this.details});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ListProductsPrice extends StatelessWidget {
       child: ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: details?.length??0,
           itemBuilder: (BuildContext context, int index) {
             return Container(margin: EdgeInsets.symmetric(vertical: 6.h),
               height: 25.h,
@@ -29,7 +29,7 @@ class ListProductsPrice extends StatelessWidget {
                   Expanded(
                     child: Text(
                       // 'oneOrderModel?.details?[index].product?.title??''',
-                      'مضاد حيوي',
+                      details?[index].mainOrderDetail?.product?.title??'',
                       style: TextStyles()
                           .getRegularStyle(
                         fontSize: 14.sp,
@@ -45,14 +45,14 @@ class ListProductsPrice extends StatelessWidget {
                           Text.rich(
                             TextSpan(
                               children: <TextSpan>[
-                                TextSpan(text: '3',
+                                TextSpan(
+                                  text:details?[index].mainOrderDetail?.qty?.toString()??'',
                                   // text: '${(oneOrderModel?.details?[index].product?.weightUnit ?? 0.0) * (oneOrderModel?.details?[index].qty ?? 0)}',
                                  // text: "${oneOrderModel?.details?[index].qty}",
                                   style: TextStyles()
                                       .getTitleStyle(
                                     fontSize: 14.sp,
-                                  )
-                                      .customColor(
+                                  ).customColor(
                                       AppColors.gray),
                                 ),
                                 TextSpan(
@@ -60,8 +60,7 @@ class ListProductsPrice extends StatelessWidget {
                                   style: TextStyles()
                                       .getRegularStyle(
                                     fontSize: 12.sp,
-                                  )
-                                      .customColor(
+                                  ).customColor(
                                       AppColors.gray),
                                 ),
                               ],
@@ -74,13 +73,12 @@ class ListProductsPrice extends StatelessWidget {
                             TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  // text: "${double.parse(((oneOrderModel?.details?[index].qty ?? 0) * (oneOrderModel?.details?[index].product?.priceWeightUnit ?? 0)).toString()??'').toPrecision(1)}",
-                                  text: "10",
+                                  // text: "${double.parse(((details?[index].mainOrderDetail?.qty ?? 0) * (details?[index].mainOrderDetail?.product?.priceWeightUnit ?? 0)).toString()??'').toPrecision(1)}",
+                                  text: details?[index].mainOrderDetail?.total.toString()??'',
                                   style: TextStyles()
                                       .getTitleStyle(
                                     fontSize: 18.sp,
-                                  )
-                                      .customColor(
+                                  ).customColor(
                                       AppColors.black),
                                 ),
                                 TextSpan(
@@ -88,8 +86,7 @@ class ListProductsPrice extends StatelessWidget {
                                   style: TextStyles()
                                       .getRegularStyle(
                                     fontSize: 12.sp,
-                                  )
-                                      .customColor(
+                                  ).customColor(
                                       AppColors.black),
                                 ),
                               ],
