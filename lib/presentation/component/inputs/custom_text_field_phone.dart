@@ -113,7 +113,7 @@ class CustomTextFieldPhone extends StatelessWidget {
       suffixIconData: suffixIconData,
       validateFunc: validateFunc ??
               (value) {
-            if ((value ?? '').length != 11) {
+            if ((value ?? '').length != 9) {
               return el.tr(validationMSG??LocaleKeys.msgInvalidPhoneNumber);
             }
 
@@ -121,7 +121,7 @@ class CustomTextFieldPhone extends StatelessWidget {
             return null;
           },
       suffixText: suffixText,
-      formatter: formatter??    [LengthLimitingTextInputFormatter(11),],
+      formatter: formatter??    [LengthLimitingTextInputFormatter(9),],
       type: TextInputType.phone,
       controller: controller,
 

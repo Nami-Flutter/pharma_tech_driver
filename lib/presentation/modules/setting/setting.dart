@@ -59,13 +59,13 @@ class _SettingState extends State<Setting> {
                                 .customColor( AppColors.gray),
                           ),
                         ),
-                        _buildItem(context,
-                            imageColor:AppColors.primaryColor,
-                            image: Assets.modifyTheAccount,
-                            title: tr(LocaleKeys.modifyTheAccount),
-                            onTap: () {
-                                push(ModifyTheAccount());
-                            }),
+                        // _buildItem(context,
+                        //     imageColor:AppColors.primaryColor,
+                        //     image: Assets.modifyTheAccount,
+                        //     title: tr(LocaleKeys.modifyTheAccount),
+                        //     onTap: () {
+                        //         push(ModifyTheAccount());
+                        //     }),
                         _buildItem(context,
                             imageColor:AppColors.primaryColor,
                             image: Assets.language,
@@ -90,20 +90,20 @@ class _SettingState extends State<Setting> {
                           SocialMediaHelper().openStore("com.nami.pharma_tech", "6471109804");
                             },
                             ),
-                        (getUserId.getUserData()?.data?.user?.id !=null)? _buildItem(
-                          context,imageColor:AppColors.errorColor,
-                          image: Assets.deleteAnAccount,
-                          title: tr(LocaleKeys.deleteAnAccount),
-                          onTap: () {
-                            createAlertDialogDeleteAccount();
-                          },
-                        ):SizedBox(),
+                        // (getUserId.getUserData()?.data?.delegate?.id !=null)? _buildItem(
+                        //   context,imageColor:AppColors.errorColor,
+                        //   image: Assets.deleteAnAccount,
+                        //   title: tr(LocaleKeys.deleteAnAccount),
+                        //   onTap: () {
+                        //     createAlertDialogDeleteAccount();
+                        //   },
+                        // ):SizedBox(),
                       ],
                     )),
                 CustomTextButton(
                   onPressed: () {
-                    (getUserId.getUserData()?.data?.user?.id !=null)?createAlertDialogLogout():push(Login());},
-                  text: (getUserId.getUserData()?.data?.user?.id !=null)?tr(LocaleKeys.logOut):'logingin'.tr(),
+                    (getUserId.getUserData()?.data?.delegate?.id !=null)?createAlertDialogLogout():push(Login());},
+                  text: (getUserId.getUserData()?.data?.delegate?.id !=null)?tr(LocaleKeys.logOut):'logingin'.tr(),
                   textColor: AppColors.darkGray,
                   textSize: 14.sp,
                 ),

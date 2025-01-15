@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_colors.dart';
-import '../../auth/auth_view_model.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
   const DeleteAccountDialog({
@@ -29,8 +28,8 @@ class DeleteAccountDialog extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
           child: GestureDetector(
               onTap: () {
-                Provider.of<AuthViewModel>(context, listen: false)
-                    .deleteAccount(context);
+                // Provider.of<AuthViewModel>(context, listen: false)
+                //     .deleteAccount(context);
                 // NavigationService.pushNamedAndRemoveUntil(Routes.login);
               },
               child: Text(
@@ -41,27 +40,27 @@ class DeleteAccountDialog extends StatelessWidget {
                     .customColor(AppColors.errorColor),
               )),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
-          child: !Provider.of<AuthViewModel>(context, listen: true).isLoading
-              ? GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    LocaleKeys.cancel.tr(),
-                    style: TextStyles()
-                        .getRegularStyle(fontSize: 16.sp)
-                        .boldStyle()
-                        .customColor(AppColors.primaryColor),
-                  ))
-              : SizedBox(
-                  height: 24.h,
-                  width: 24.w,
-                  child: const CircularProgressIndicator(
-                    strokeWidth: 3,
-                  )),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+        //   child: !Provider.of<AuthViewModel>(context, listen: true).isLoading
+        //       ? GestureDetector(
+        //           onTap: () {
+        //             Navigator.of(context).pop();
+        //           },
+        //           child: Text(
+        //             LocaleKeys.cancel.tr(),
+        //             style: TextStyles()
+        //                 .getRegularStyle(fontSize: 16.sp)
+        //                 .boldStyle()
+        //                 .customColor(AppColors.primaryColor),
+        //           ))
+        //       : SizedBox(
+        //           height: 24.h,
+        //           width: 24.w,
+        //           child: const CircularProgressIndicator(
+        //             strokeWidth: 3,
+        //           )),
+        // ),
       ],
     );
   }

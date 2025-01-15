@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/resources/locale_keys.g.dart';
 import 'package:pharma_tech_driver/injection.dart';
+import 'package:pharma_tech_driver/presentation/modules/auth/login/provider/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/logger.dart';
@@ -10,12 +11,10 @@ import '../../../../../core/res/text_styles.dart';
 import '../../../../../main.dart';
 import '../../../../core/resources/app_colors.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/app_constants.dart';
 import '../../../../data/repository/SaveUserData.dart';
 import '../../../component/buttons/custom_button.dart';
 import '../../../component/screen_state_layout.dart';
 import '../../../component/spaces.dart';
-import '../../auth/auth_view_model.dart';
 
 class ChangeLanguageSheet extends StatefulWidget {
   @override
@@ -38,8 +37,10 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
   Future<void> _onLanguageSelected() async {
     log('onLanguageSelected', 'change language to (${locale.languageCode})');
     saveUserData.saveLang(locale.languageCode);
-    if (saveUserData.getUserData()?.data?.user?.id !=null) {
-      Provider.of<AuthViewModel>(context,listen: false).updateFCMToken();
+    if (saveUserData.getUserData()?.data?.delegate?.id !=null) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp){
+        Provider.of<LoginLogoutViewModel>(context,listen: false).updateFCMToken();
+      });
     }
     Navigator.pop(context);
     context.setLocale(locale) ;

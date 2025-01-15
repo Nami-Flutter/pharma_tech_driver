@@ -22,6 +22,8 @@
   "offerStartDate": "Offer start date:",
   "offerEndDate": "Offer end date:",
   "youReachedMaximumPurchaseLimitProduct": "You have reached the maximum purchase limit for this product",
+  "passwordMustLeastCharactersLong": "Password must be at least 6 characters long.",
+  "passwordRequired": "Password required",
 
 
   "tittleLogin": "Hey, you ..!",

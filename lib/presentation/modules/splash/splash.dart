@@ -4,10 +4,11 @@ import 'package:pharma_tech_driver/presentation/modules/auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/routing/route.dart';
 import 'package:pharma_tech_driver/injection.dart';
+import 'package:pharma_tech_driver/presentation/modules/auth/login/provider/login_provider.dart';
+import 'package:pharma_tech_driver/presentation/modules/home/home.dart';
 import 'package:provider/provider.dart';
 import '../../../data/repository/SaveUserData.dart';
 import '../../component/appbars/custom_app_bar.dart';
-import '../auth/auth_view_model.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -22,21 +23,15 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    // print("jhjhjhhhhtoken${sp.getUserData()?.data?.auth?.token}");
     Timer(const Duration(seconds: 3), () {
-      if (sp.getUserData()?.data?.user?.id !=null) {
-        Provider.of<AuthViewModel>(context,listen: false).updateFCMToken();
-        // pushAndRemoveUntil(const BottomNavigationBarExample(0));
+      if (sp.getUserData()?.data?.delegate?.id !=null) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp){
+          Provider.of<LoginLogoutViewModel>(context,listen: false).updateFCMToken();
+        });
+        pushAndRemoveUntil(HomeScreen());
       }else{
-        // if(sp.isShowIntro()==false){
-          // pushAndRemoveUntil( IntroScreen());
-        // }else{
-          // pushAndRemoveUntil(const BottomNavigationBarExample(0)); // for complete design remove it later
           pushAndRemoveUntil(const Login());
-        // }
       }
-
-
     });
   }
 

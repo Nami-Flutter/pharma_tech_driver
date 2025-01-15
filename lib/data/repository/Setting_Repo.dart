@@ -11,29 +11,11 @@ class SettingRepo {
   SettingRepo({required this.dioClient});
 
 
-  Future<ApiResponse> myFavoriteProductRepo() async {
-    try {
-      Response response =
-          await dioClient.get(AppURL.kMyFavoriteURI);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
 
   Future<ApiResponse> settingRepo() async {
     try {
       Response response =
           await dioClient.get(AppURL.kSettingURI);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-  Future<ApiResponse> pointsRepo() async {
-    try {
-      Response response =
-          await dioClient.get(AppURL.kPointsURI);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

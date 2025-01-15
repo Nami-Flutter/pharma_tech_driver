@@ -1,10 +1,4 @@
 
-import 'dart:convert';
-
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
-
-String userModelToJson(UserModel data) => json.encode(data.toJson());
-
 class UserModel {
   Data? data;
   String? message;
@@ -30,21 +24,21 @@ class UserModel {
 }
 
 class Data {
-  User? user;
+  Delegate? delegate;
   Auth? auth;
 
   Data({
-    this.user,
+    this.delegate,
     this.auth,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    user: json["user"] == null ? null : User.fromJson(json["user"]),
+    delegate: json["delegate"] == null ? null : Delegate.fromJson(json["delegate"]),
     auth: json["auth"] == null ? null : Auth.fromJson(json["auth"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "user": user?.toJson(),
+    "delegate": delegate?.toJson(),
     "auth": auth?.toJson(),
   };
 }
@@ -65,83 +59,30 @@ class Auth {
   };
 }
 
-class User {
+class Delegate {
   int? id;
-  String? firstName;
-  String? lastName;
-  String? phoneCode;
+  int? adminId;
+  String? name;
   String? phone;
-  String? image;
-  int? points;
-  String? invitationCode;
-  int? cityId;
-  City? city;
 
-  User({
+  Delegate({
     this.id,
-    this.firstName,
-    this.lastName,
-    this.phoneCode,
+    this.adminId,
+    this.name,
     this.phone,
-    this.image,
-    this.points,
-    this.invitationCode,
-    this.cityId,
-    this.city,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory Delegate.fromJson(Map<String, dynamic> json) => Delegate(
     id: json["id"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    phoneCode: json["phone_code"],
+    adminId: json["admin_id"],
+    name: json["name"],
     phone: json["phone"],
-    image: json["image"],
-    points: json["points"],
-    invitationCode: json["invitation_code"],
-    cityId: json["city_id"],
-    city: City.fromJson(json["city"]),
-
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "first_name": firstName,
-    "last_name": lastName,
-    "phone_code": phoneCode,
+    "admin_id": adminId,
+    "name": name,
     "phone": phone,
-    "image": image,
-    "points": points,
-    "invitation_code": invitationCode,
-    "city_id": cityId,
-    "city": city!.toJson(),
   };
 }
-class City {
-  int id;
-  String title;
-  int deliveryCost;
-  int regionId;
-
-  City({
-    required this.id,
-    required this.title,
-    required this.deliveryCost,
-    required this.regionId,
-  });
-
-  factory City.fromJson(Map<String, dynamic> json) => City(
-    id: json["id"],
-    title: json["title"],
-    deliveryCost: json["delivery_cost"],
-    regionId: json["region_id"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "title": title,
-    "delivery_cost": deliveryCost,
-    "region_id": regionId,
-  };
-}
-

@@ -23,6 +23,8 @@ abstract class  LocaleKeys {
   static const invited = 'invited';
   static const enterCode = 'enterCode';
   static const msgInvalidPhoneNumber  = 'msgInvalidPhoneNumber';
+  static const passwordMustLeastCharactersLong  = 'passwordMustLeastCharactersLong';
+  static const passwordRequired  = 'passwordRequired';
   static const phoneMustBeEntered  = 'phoneMustBeEntered';
   static const phoneNotRegistered  = 'phoneNotRegistered';
   static const egypt  = 'egypt';

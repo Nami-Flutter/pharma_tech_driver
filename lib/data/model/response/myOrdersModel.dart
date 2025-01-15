@@ -1,249 +1,109 @@
 
-class MyOrdersModel {
-  List<MyOrderData>? data;
+class OrdersModel {
+  List<OneOrder>? data;
   String? message;
   int? code;
 
-  MyOrdersModel({
+  OrdersModel({
     this.data,
     this.message,
     this.code,
   });
 
-  factory MyOrdersModel.fromJson(Map<String, dynamic> json) => MyOrdersModel(
-      data: json["data"] == null ? [] : List<MyOrderData>.from(json["data"]!.map((x) => MyOrderData.fromJson(x))),
-  message: json["message"],
-  code: json["code"],
+  factory OrdersModel.fromJson(Map<String, dynamic> json) => OrdersModel(
+    data: json["data"] == null ? [] : List<OneOrder>.from(json["data"]!.map((x) => OneOrder.fromJson(x))),
+    message: json["message"],
+    code: json["code"],
   );
 
   Map<String, dynamic> toJson() => {
-  "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
-  "message": message,
-  "code": code,
-};
+    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "message": message,
+    "code": code,
+  };
 }
 
-class MyOrderData {
+class OneOrder {
   int? id;
-  int? branchId;
-  Branch? branch;
-  int? userId;
-  DatumUser? user;
-  String? address;
-  double? latitude;
-  double? longitude;
+  int? delegateId;
+  int? orderId;
+  int? adminId;
   String? status;
-  String? payType;
-  bool? isPaid;
-  bool? isPoints;
-  num? pointsCount;
-  num? pointsValue;
-  dynamic driverId;
-  dynamic driver;
-  num? driverCost;
-  num? netTotal;
-  double? taxValue;
-  double? grandTotal;
-  String? notes;
-  String? createdAt;
-  String? date;
-  String? time;
+  Order? order;
   List<Detail>? details;
+  String? createdAt;
 
-  MyOrderData({
+  OneOrder({
     this.id,
-    this.branchId,
-    this.branch,
-    this.userId,
-    this.user,
-    this.address,
-    this.latitude,
-    this.longitude,
+    this.delegateId,
+    this.orderId,
+    this.adminId,
     this.status,
-    this.payType,
-    this.isPaid,
-    this.isPoints,
-    this.pointsCount,
-    this.pointsValue,
-    this.driverId,
-    this.driver,
-    this.driverCost,
-    this.netTotal,
-    this.taxValue,
-    this.grandTotal,
-    this.notes,
-    this.createdAt,
-    this.date,
-    this.time,
+    this.order,
     this.details,
+    this.createdAt,
   });
 
-  factory MyOrderData.fromJson(Map<String, dynamic> json) => MyOrderData(
-      id: json["id"],
-      branchId: json["branch_id"],
-      branch: json["branch"] == null ? null : Branch.fromJson(json["branch"]),
-      userId: json["user_id"],
-      user: json["user"] == null ? null : DatumUser.fromJson(json["user"]),
-      address: json["address"],
-      latitude: json["latitude"]?.toDouble(),
-      longitude: json["longitude"]?.toDouble(),
-      status: json["status"],
-      payType: json["pay_type"],
-      isPaid: json["is_paid"],
-      isPoints: json["is_points"],
-      pointsCount: json["points_count"],
-      pointsValue: json["points_value"],
-      driverId: json["driver_id"],
-      driver: json["driver"],
-      driverCost: json["driver_cost"],
-      netTotal: json["net_total"],
-      taxValue: json["tax_value"]?.toDouble(),
-      grandTotal: json["grand_total"]?.toDouble(),
-      notes: json["notes"],
-      createdAt: json["created_at"],
-      date: json["date"],
-      time: json["time"],
-      details: json["details"] == null ? [] : List<Detail>.from(json["details"]!.map((x) => Detail.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-  "id": id,
-  "branch_id": branchId,
-  "branch": branch?.toJson(),
-  "user_id": userId,
-  "user": user?.toJson(),
-  "address": address,
-  "latitude": latitude,
-  "longitude": longitude,
-  "status": status,
-  "pay_type": payType,
-  "is_paid": isPaid,
-  "is_points": isPoints,
-  "points_count": pointsCount,
-  "points_value": pointsValue,
-  "driver_id": driverId,
-  "driver": driver,
-  "driver_cost": driverCost,
-  "net_total": netTotal,
-  "tax_value": taxValue,
-  "grand_total": grandTotal,
-  "notes": notes,
-  "created_at": createdAt,
-  "date": date,
-  "time": time,
-  "details": details == null ? [] : List<dynamic>.from(details!.map((x) => x.toJson())),
-};
-}
-
-class Branch {
-  int? id;
-  String? title;
-  int? regionId;
-  Region? region;
-  int? cityId;
-  City? city;
-  double? longitude;
-  double? latitude;
-  double? distance;
-  bool? isMain;
-
-  Branch({
-    this.id,
-    this.title,
-    this.regionId,
-    this.region,
-    this.cityId,
-    this.city,
-    this.longitude,
-    this.latitude,
-    this.distance,
-    this.isMain,
-  });
-
-  factory Branch.fromJson(Map<String, dynamic> json) => Branch(
+  factory OneOrder.fromJson(Map<String, dynamic> json) => OneOrder(
     id: json["id"],
-    title: json["title"],
-    regionId: json["region_id"],
-    region: json["region"] == null ? null : Region.fromJson(json["region"]),
-    cityId: json["city_id"],
-    city: json["city"] == null ? null : City.fromJson(json["city"]),
-    longitude: json["longitude"]?.toDouble(),
-    latitude: json["latitude"]?.toDouble(),
-    distance: json["distance"]?.toDouble(),
-    isMain: json["is_main"],
+    delegateId: json["delegate_id"],
+    orderId: json["order_id"],
+    adminId: json["admin_id"],
+    status: json["status"],
+    order: json["order"] == null ? null : Order.fromJson(json["order"]),
+    details: json["details"] == null ? [] : List<Detail>.from(json["details"]!.map((x) => Detail.fromJson(x))),
+    createdAt: json["created_at"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "title": title,
-    "region_id": regionId,
-    "region": region?.toJson(),
-    "city_id": cityId,
-    "city": city?.toJson(),
-    "longitude": longitude,
-    "latitude": latitude,
-    "distance": distance,
-    "is_main": isMain,
+    "delegate_id": delegateId,
+    "order_id": orderId,
+    "admin_id": adminId,
+    "status": status,
+    "order": order?.toJson(),
+    "details": details == null ? [] : List<dynamic>.from(details!.map((x) => x.toJson())),
+    "created_at": createdAt,
   };
-}
-
-class City {
-  int? id;
-  String? title;
-  int? regionId;
-
-  City({
-    this.id,
-    this.title,
-    this.regionId,
-  });
-
-  factory City.fromJson(Map<String, dynamic> json) => City(
-    id: json["id"],
-    title: json["title"],
-    regionId: json["region_id"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "title": title,
-    "region_id": regionId,
-  };
-}
-
-class Region {
-  int? id;
-  String? title;
-  List<City>? cities;
-
-  Region({
-    this.id,
-    this.title,
-    this.cities,
-  });
-
-  factory Region.fromJson(Map<String, dynamic> json) => Region(
-      id: json["id"],
-      title: json["title"],
-      cities: json["cities"] == null ? [] : List<City>.from(json["cities"]!.map((x) => City.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-  "id": id,
-  "title": title,
-  "cities": cities == null ? [] : List<dynamic>.from(cities!.map((x) => x.toJson())),
-};
 }
 
 class Detail {
   int? id;
-  int? productId;
-  Product? product;
-  num? qty;
-  num? netCost;
-  num? total;
+  int? delegateOrderId;
+  int? orderDetailId;
+  MainOrderDetail? mainOrderDetail;
 
   Detail({
+    this.id,
+    this.delegateOrderId,
+    this.orderDetailId,
+    this.mainOrderDetail,
+  });
+
+  factory Detail.fromJson(Map<String, dynamic> json) => Detail(
+    id: json["id"],
+    delegateOrderId: json["delegate_order_id"],
+    orderDetailId: json["order_detail_id"],
+    mainOrderDetail: json["main_order_detail"] == null ? null : MainOrderDetail.fromJson(json["main_order_detail"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "delegate_order_id": delegateOrderId,
+    "order_detail_id": orderDetailId,
+    "main_order_detail": mainOrderDetail?.toJson(),
+  };
+}
+
+class MainOrderDetail {
+  int? id;
+  int? productId;
+  Product? product;
+  int? qty;
+  int? netCost;
+  int? total;
+
+  MainOrderDetail({
     this.id,
     this.productId,
     this.product,
@@ -252,7 +112,7 @@ class Detail {
     this.total,
   });
 
-  factory Detail.fromJson(Map<String, dynamic> json) => Detail(
+  factory MainOrderDetail.fromJson(Map<String, dynamic> json) => MainOrderDetail(
     id: json["id"],
     productId: json["product_id"],
     product: json["product"] == null ? null : Product.fromJson(json["product"]),
@@ -275,78 +135,242 @@ class Product {
   int? id;
   String? title;
   String? image;
+  int? categoryId;
+  Category? category;
   String? details;
-  num? price;
+  dynamic howToUse;
+  dynamic howToStore;
+  int? salesLimit;
+  int? price;
   String? unit;
+  double? weightUnit;
+  double? priceWeightUnit;
   bool? isOffer;
-  String? offerType;
-  num? offerValue;
-  String? offerStartDate;
-  String? offerEndDate;
-  num? oldPrice;
+  int? isActive;
+  dynamic offerType;
+  int? offerValue;
+  DateTime? offerStartDate;
+  DateTime? offerEndDate;
+  int? oldPrice;
   bool? isFavorite;
-  bool? isAvailable;
 
   Product({
     this.id,
     this.title,
     this.image,
+    this.categoryId,
+    this.category,
     this.details,
+    this.howToUse,
+    this.howToStore,
+    this.salesLimit,
     this.price,
     this.unit,
+    this.weightUnit,
+    this.priceWeightUnit,
     this.isOffer,
+    this.isActive,
     this.offerType,
     this.offerValue,
     this.offerStartDate,
     this.offerEndDate,
     this.oldPrice,
     this.isFavorite,
-    this.isAvailable,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
     id: json["id"],
     title: json["title"],
     image: json["image"],
+    categoryId: json["category_id"],
+    category: json["category"] == null ? null : Category.fromJson(json["category"]),
     details: json["details"],
+    howToUse: json["how_to_use"],
+    howToStore: json["how_to_store"],
+    salesLimit: json["sales_limit"],
     price: json["price"],
     unit: json["unit"],
+    weightUnit: json["weight_unit"]?.toDouble(),
+    priceWeightUnit: json["price_weight_unit"]?.toDouble(),
     isOffer: json["is_offer"],
+    isActive: json["is_active"],
     offerType: json["offer_type"],
     offerValue: json["offer_value"],
-    offerStartDate: json["offer_start_date"],
-    offerEndDate: json["offer_end_date"],
+    offerStartDate: json["offer_start_date"] == null ? null : DateTime.parse(json["offer_start_date"]),
+    offerEndDate: json["offer_end_date"] == null ? null : DateTime.parse(json["offer_end_date"]),
     oldPrice: json["old_price"],
     isFavorite: json["is_favorite"],
-    isAvailable: json["is_available"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
     "image": image,
+    "category_id": categoryId,
+    "category": category?.toJson(),
     "details": details,
+    "how_to_use": howToUse,
+    "how_to_store": howToStore,
+    "sales_limit": salesLimit,
     "price": price,
     "unit": unit,
+    "weight_unit": weightUnit,
+    "price_weight_unit": priceWeightUnit,
     "is_offer": isOffer,
+    "is_active": isActive,
     "offer_type": offerType,
     "offer_value": offerValue,
-    "offer_start_date": offerStartDate,
-    "offer_end_date": offerEndDate,
+    "offer_start_date": "${offerStartDate!.year.toString().padLeft(4, '0')}-${offerStartDate!.month.toString().padLeft(2, '0')}-${offerStartDate!.day.toString().padLeft(2, '0')}",
+    "offer_end_date": "${offerEndDate!.year.toString().padLeft(4, '0')}-${offerEndDate!.month.toString().padLeft(2, '0')}-${offerEndDate!.day.toString().padLeft(2, '0')}",
     "old_price": oldPrice,
     "is_favorite": isFavorite,
-    "is_available": isAvailable,
   };
 }
 
-class DatumUser {
+class Category {
+  int? id;
+  String? image;
+  String? title;
+  DateTime? createdAt;
+
+  Category({
+    this.id,
+    this.image,
+    this.title,
+    this.createdAt,
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) => Category(
+    id: json["id"],
+    image: json["image"],
+    title: json["title"],
+    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "image": image,
+    "title": title,
+    "created_at": createdAt?.toIso8601String(),
+  };
+}
+
+class Order {
+  int? id;
+  int? userId;
+  OrderUser? user;
+  dynamic driverCancelReason;
+  String? address;
+  dynamic addressDetails;
+  double? latitude;
+  double? longitude;
+  String? status;
+  bool? isCollected;
+  String? payType;
+  bool? isPaid;
+  bool? isPoints;
+  int? pointsCount;
+  int? pointsValue;
+  int? driverCost;
+  double? netTotal;
+  int? taxValue;
+  int? deliveryPrice;
+  double? grandTotal;
+  dynamic notes;
+  String? createdAt;
+  DateTime? date;
+  String? time;
+
+  Order({
+    this.id,
+    this.userId,
+    this.user,
+    this.driverCancelReason,
+    this.address,
+    this.addressDetails,
+    this.latitude,
+    this.longitude,
+    this.status,
+    this.isCollected,
+    this.payType,
+    this.isPaid,
+    this.isPoints,
+    this.pointsCount,
+    this.pointsValue,
+    this.driverCost,
+    this.netTotal,
+    this.taxValue,
+    this.deliveryPrice,
+    this.grandTotal,
+    this.notes,
+    this.createdAt,
+    this.date,
+    this.time,
+  });
+
+  factory Order.fromJson(Map<String, dynamic> json) => Order(
+    id: json["id"],
+    userId: json["user_id"],
+    user: json["user"] == null ? null : OrderUser.fromJson(json["user"]),
+    driverCancelReason: json["driver_cancel_reason"],
+    address: json["address"],
+    addressDetails: json["address_details"],
+    latitude: json["latitude"]?.toDouble(),
+    longitude: json["longitude"]?.toDouble(),
+    status: json["status"],
+    isCollected: json["is_collected"],
+    payType: json["pay_type"],
+    isPaid: json["is_paid"],
+    isPoints: json["is_points"],
+    pointsCount: json["points_count"],
+    pointsValue: json["points_value"],
+    driverCost: json["driver_cost"],
+    netTotal: json["net_total"]?.toDouble(),
+    taxValue: json["tax_value"],
+    deliveryPrice: json["delivery_price"],
+    grandTotal: json["grand_total"]?.toDouble(),
+    notes: json["notes"],
+    createdAt: json["created_at"],
+    date: json["date"] == null ? null : DateTime.parse(json["date"]),
+    time: json["time"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "user_id": userId,
+    "user": user?.toJson(),
+    "driver_cancel_reason": driverCancelReason,
+    "address": address,
+    "address_details": addressDetails,
+    "latitude": latitude,
+    "longitude": longitude,
+    "status": status,
+    "is_collected": isCollected,
+    "pay_type": payType,
+    "is_paid": isPaid,
+    "is_points": isPoints,
+    "points_count": pointsCount,
+    "points_value": pointsValue,
+    "driver_cost": driverCost,
+    "net_total": netTotal,
+    "tax_value": taxValue,
+    "delivery_price": deliveryPrice,
+    "grand_total": grandTotal,
+    "notes": notes,
+    "created_at": createdAt,
+    "date": "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+    "time": time,
+  };
+}
+
+class OrderUser {
   UserUser? user;
 
-  DatumUser({
+  OrderUser({
     this.user,
   });
 
-  factory DatumUser.fromJson(Map<String, dynamic> json) => DatumUser(
+  factory OrderUser.fromJson(Map<String, dynamic> json) => OrderUser(
     user: json["user"] == null ? null : UserUser.fromJson(json["user"]),
   );
 
@@ -362,10 +386,10 @@ class UserUser {
   String? phoneCode;
   String? phone;
   String? image;
-  num? points;
+  int? points;
   String? invitationCode;
   int? cityId;
-  dynamic city;
+  City? city;
 
   UserUser({
     this.id,
@@ -390,7 +414,7 @@ class UserUser {
     points: json["points"],
     invitationCode: json["invitation_code"],
     cityId: json["city_id"],
-    city: json["city"],
+    city: json["city"] == null ? null : City.fromJson(json["city"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -403,6 +427,34 @@ class UserUser {
     "points": points,
     "invitation_code": invitationCode,
     "city_id": cityId,
-    "city": city,
+    "city": city?.toJson(),
+  };
+}
+
+class City {
+  int? id;
+  String? title;
+  int? deliveryCost;
+  int? regionId;
+
+  City({
+    this.id,
+    this.title,
+    this.deliveryCost,
+    this.regionId,
+  });
+
+  factory City.fromJson(Map<String, dynamic> json) => City(
+    id: json["id"],
+    title: json["title"],
+    deliveryCost: json["delivery_cost"],
+    regionId: json["region_id"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "title": title,
+    "delivery_cost": deliveryCost,
+    "region_id": regionId,
   };
 }

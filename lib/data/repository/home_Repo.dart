@@ -9,33 +9,11 @@ class HomeRepo {
 
   HomeRepo({required this.dioClient});
 
-  Future<ApiResponse> sliderHomeRepo() async {
+  Future<ApiResponse> orderHomeRepo(String status,page) async {
     try {
-      Response response = await dioClient.get(AppURL.kHomeSliderURI);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-  Future<ApiResponse> latestProductsRepo() async {
-    try {
-      Response response = await dioClient.get(AppURL.kLatestProductsURI);
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-  Future<ApiResponse> offersProductsRepo(String limitPerPage) async {
-    try {
-      Response response = await dioClient.get('${AppURL.kListOffersProductsURI}$limitPerPage');
-      return ApiResponse.withSuccess(response);
-    } catch (e) {
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
-  }
-  Future<ApiResponse> notificationListRepo() async {
-    try {
-      Response response = await dioClient.get(AppURL.kGetNotificationsURI);
+      Response response = await dioClient.get(
+          (status=='new')?'${AppURL.kOrdersURI}?status[0]=$status&limit=10&page=$page':
+          '${AppURL.kOrdersURI}?status[1]=$status&limit=10&page=$page');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

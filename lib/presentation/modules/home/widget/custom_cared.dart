@@ -17,7 +17,7 @@ class CustomCared extends StatefulWidget {
      this.data,
   });
 
-  final MyOrderData? data;
+  final OneOrder? data;
   final String? type;
 
   @override
@@ -41,7 +41,7 @@ class _CustomCaredState extends State<CustomCared> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${widget.data?.id}',
+                '${widget.data?.orderId}',
                 style: const TextStyle()
                     .titleStyle(fontSize: 18.sp)
                     .customColor(AppColors.primaryColor),
@@ -76,7 +76,7 @@ class _CustomCaredState extends State<CustomCared> {
                   ),
                   HorizontalSpace(10.w),
                   Text(
-                    '${widget.data?.date}',
+                    '${widget.data?.order?.date}',
                     style: TextStyles()
                         .getRegularStyle()
                         .customColor(AppColors.black),
@@ -92,7 +92,7 @@ class _CustomCaredState extends State<CustomCared> {
                   ),
                   HorizontalSpace(10.w),
                   Text(
-                    '${widget.data?.time}',
+                    '${widget.data?.order?.time}',
                     style: const TextStyle().bodyStyle(),
                   ),
                 ],
@@ -108,10 +108,10 @@ class _CustomCaredState extends State<CustomCared> {
               HorizontalSpace(10.w),
               Expanded(
                 child: InkWell(onTap: (){
-                  socialMediaHelper.openGoogleMapByAddress(widget.data?.address??'');
+                  socialMediaHelper.openGoogleMapByAddress(widget.data?.order?.address??'');
                 },
                   child: Text(
-                    '${widget.data?.address}',
+                    '${widget.data?.order?.address}',
                     style: TextStyles()
                         .getRegularStyle(fontSize: 14.sp)
                         .customColor(AppColors.black),
@@ -134,16 +134,16 @@ class _CustomCaredState extends State<CustomCared> {
                     color: AppColors.white),
                 child: Center(
                   child: Text(
-                  widget.data?.status == 'new' ?LocaleKeys.received.tr():
-                  widget.data?.status  == 'accepted'?LocaleKeys.approved.tr():
-                  widget.data?.status  == 'refused' ?LocaleKeys.orderCanceledFromStore.tr():
-                  widget.data?.status  == 'on_progress' ?LocaleKeys.preparing.tr():
-                  widget.data?.status  == 'on_way' ?LocaleKeys.representative.tr():
-                  widget.data?.status  == 'delivery_progress' ?LocaleKeys.progress.tr():
-                  widget.data?.status  == 'ended' ?LocaleKeys.done.tr():
-                  widget.data?.status  == 'canceled' ?LocaleKeys.orderCanceled.tr():
-                  widget.data?.status  == 'progress_done' ?LocaleKeys.prepared.tr():
-                  widget.data?.status  == 'driver_canceled' ?LocaleKeys.RequestDriverCancelled.tr():
+                  widget.data?.order?.status == 'new' ?LocaleKeys.received.tr():
+                  widget.data?.order?.status  == 'accepted'?LocaleKeys.approved.tr():
+                  widget.data?.order?.status  == 'refused' ?LocaleKeys.orderCanceledFromStore.tr():
+                  widget.data?.order?.status  == 'on_progress' ?LocaleKeys.preparing.tr():
+                  widget.data?.order?.status  == 'on_way' ?LocaleKeys.representative.tr():
+                  widget.data?.order?.status  == 'delivery_progress' ?LocaleKeys.progress.tr():
+                  widget.data?.order?.status  == 'ended' ?LocaleKeys.done.tr():
+                  widget.data?.order?.status  == 'canceled' ?LocaleKeys.orderCanceled.tr():
+                  widget.data?.order?.status  == 'progress_done' ?LocaleKeys.prepared.tr():
+                  widget.data?.order?.status  == 'driver_canceled' ?LocaleKeys.RequestDriverCancelled.tr():
                       // orderData.oneOrderModel?.data?.status == 'delivered' ?LocaleKeys.done:
                       LocaleKeys.done.tr(),
                     style: TextStyles()

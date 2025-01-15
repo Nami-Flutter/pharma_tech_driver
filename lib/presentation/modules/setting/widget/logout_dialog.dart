@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/resources/locale_keys.g.dart';
+import 'package:pharma_tech_driver/presentation/modules/auth/login/provider/login_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_colors.dart';
-import '../../auth/auth_view_model.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({
@@ -26,11 +26,10 @@ class LogoutDialog extends StatelessWidget {
       actions: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
-          child: !Provider.of<AuthViewModel>(context, listen: true).isLoading
+          child: !Provider.of<LoginLogoutViewModel>(context, listen: true).isLoading
               ? GestureDetector(
                   onTap: () {
-                    Provider.of<AuthViewModel>(context, listen: false)
-                        .logout(context);
+                    Provider.of<LoginLogoutViewModel>(context, listen: false).logout();
                   },
                   child: Text(
                     LocaleKeys.confirm.tr(),

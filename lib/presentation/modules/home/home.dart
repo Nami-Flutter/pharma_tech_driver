@@ -3,9 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/routing/route.dart';
+import 'package:pharma_tech_driver/data/repository/SaveUserData.dart';
+import 'package:pharma_tech_driver/injection.dart';
+import 'package:pharma_tech_driver/main.dart';
 import 'package:pharma_tech_driver/presentation/component/component.dart';
+import 'package:pharma_tech_driver/presentation/modules/home/provider/home_provider.dart';
 import 'package:pharma_tech_driver/presentation/modules/home/widget/custom_list_view.dart';
 import 'package:pharma_tech_driver/presentation/modules/setting/setting.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/res/text_styles.dart';
 import '../../../core/resources/app_assets.dart';
@@ -23,11 +28,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  SaveUserData saveUserData =getIt();
   @override
   void initState() {
-    _getMyOrders(context,'new');
+    _loadData();
     super.initState();
   }
+
+  Future<void> _loadData() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      navigator.currentContext!.read<HomeViewModel>().initMyOrders();
+      Provider.of<HomeViewModel>(context, listen: false).getAllOrders();});}
   int isClicked = 0;
   final controller = PageController(initialPage: 0);
 
@@ -37,24 +48,24 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: CustomAppBar(
           titleWidget: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12.r),
-                child: CachedNetworkImage(
-                    imageUrl: 'widget.imageUrl ??' ,
-                    height: 40.h,
-                    width: 40.w,
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) => Container(
-                      color: Theme.of(context).primaryColor,
-                      padding: EdgeInsets.all(6.sp),
-                      child: const SVGIcon(Assets.logo,),
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                        padding: EdgeInsets.all(4.sp),
-                        color: Theme.of(context).primaryColor,
-                        child: Icon(Icons.error_outline)
-                    )),
-              ),
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(12.r),
+              //   child: CachedNetworkImage(
+              //       imageUrl: 'widget.imageUrl ??' ,
+              //       height: 40.h,
+              //       width: 40.w,
+              //       fit: BoxFit.fill,
+              //       placeholder: (context, url) => Container(
+              //         color: Theme.of(context).primaryColor,
+              //         padding: EdgeInsets.all(6.sp),
+              //         child: const SVGIcon(Assets.logo,),
+              //       ),
+              //       errorWidget: (context, url, error) => Container(
+              //           padding: EdgeInsets.all(4.sp),
+              //           color: Theme.of(context).primaryColor,
+              //           child: Icon(Icons.error_outline)
+              //       )),
+              // ),
               SizedBox(width: 5.w),
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -64,8 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       .bodyStyle(fontSize: FontSize.s12.sp)
                       .customColor(AppColors.gray),
                 ),
+                SizedBox(height: 5.w),
                 Text(
-                 'عماد مجدي',
+                  saveUserData.getUserData()?.data?.delegate?.name??'',
                   style: const TextStyle()
                       .titleStyle(fontSize: FontSize.s16.sp)
                       .customColor(AppColors.black),
@@ -111,82 +123,83 @@ class _HomeScreenState extends State<HomeScreen> {
           ],)],
           isBackButtonExist: false,
         ),
-        body: Column(children: [
-              Padding(
-                padding: EdgeInsets.only(right: 16.w, left: 16.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(width: 166.w,
-                      child: CustomButton(
-                        onTap: () async {
-                          setState(() {
-                            isClicked = 0;
-                          });
-                          controller.animateToPage(isClicked,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeInOut);
-                          _getMyOrders(context,'new');
-                        },
-                        textColor: isClicked == 0
-                            ? AppColors.white
-                            : AppColors.gray,
-                        color: isClicked == 0 ? AppColors.primaryColor : AppColors.grayLight,
-                        title:LocaleKeys.current.tr(),
+        body: Consumer<HomeViewModel>(
+          builder: (context,data,_) {
+            return Column(children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 16.w, left: 16.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(width: 166.w,
+                          child: CustomButton(
+                            onTap: () async {
+                              setState(() {
+                                isClicked = 0;
+                                data.status='new';
+                              });
+                              controller.animateToPage(isClicked,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.easeInOut);
+                              _loadData();
+                            },
+                            textColor: isClicked == 0
+                                ? AppColors.white
+                                : AppColors.gray,
+                            color: isClicked == 0 ? AppColors.primaryColor : AppColors.grayLight,
+                            title:LocaleKeys.current.tr(),
 
-                      ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 166.w,
+                          child: CustomButton(
+                            onTap: () async {
+                              setState(() {
+                                isClicked = 1;
+                                data.status='on_way';
+                              });
+                              controller.animateToPage(isClicked,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.easeInOut);
+                              _loadData();
+                            },
+                            title: LocaleKeys.previous.tr(),
+                            // width: 108.67.w,
+                            textColor: isClicked == 1
+                                ? AppColors.white
+                                : AppColors.gray,
+                            color: isClicked == 1 ? AppColors.primaryColor : AppColors.grayLight,),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 166.w,
-                      child: CustomButton(
-                        onTap: () async {
-                          setState(() {
-                            isClicked = 1;
-                          });
-                          controller.animateToPage(isClicked,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeInOut);
-                          _getMyOrders(context,'old');
-
-                        },
-                        title: LocaleKeys.previous.tr(),
-                        // width: 108.67.w,
-                        textColor: isClicked == 1
-                            ? AppColors.white
-                            : AppColors.gray,
-                        color: isClicked == 1 ? AppColors.primaryColor : AppColors.grayLight,),
+                  ),
+                  SizedBox(height: 10.h),
+                  Expanded(
+                    // flex: 2,
+                    child: PageView(
+                      controller: controller,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 16.w, left: 16.w),
+                          child: CustomListView(
+                            type: 'new',
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 16.w, left: 16.w),
+                          child: CustomListView(
+                            type: 'on_way',
+                          ),
+                        )
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Expanded(
-                // flex: 2,
-                child: PageView(
-                  controller: controller,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 16.w, left: 16.w),
-                      child: CustomListView(
-                        type: 'new',
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 16.w, left: 16.w),
-                      child: CustomListView(
-                        type: 'old',
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ])
+                  ),
+                ]);
+          }
+        )
 
     );
-  }
-  _getMyOrders(BuildContext context,String type)
-  async{
-    // Provider.of<MyOrdersViewModel>(context, listen: false).getMyOrdersApi(context,type);
   }
 }

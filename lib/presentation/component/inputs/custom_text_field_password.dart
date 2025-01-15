@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 
 import '../../../../core/resources/app_assets.dart';
+import '../../../core/resources/locale_keys.g.dart';
 import 'base_form.dart';
 
 class CustomTextFieldPassword extends StatefulWidget {
@@ -12,6 +14,7 @@ class CustomTextFieldPassword extends StatefulWidget {
   final String? defaultValue;
   final String? label;
   final String? iconSVG;
+  final String? validationMSG;
 
   final bool readOnly;
   final bool autoValidate;
@@ -78,7 +81,7 @@ class CustomTextFieldPassword extends StatefulWidget {
     this.validateFunc,
     this.onSubmit,
     this.controller,
-    this.textInputAction,
+    this.textInputAction, this.validationMSG,
   }) : super(key: key);
 
   @override
@@ -115,9 +118,11 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
       suffixIconData: widget.suffixIconData,
       validateFunc: widget.validateFunc ??
           (value) {
-            // if (value.toString().length == 11) {
-            //   return tr(LocaleKeys.msgInvalidPhoneNumber);
-            // }
+            if (value.toString().length < 6) {
+              return widget.validationMSG?? tr(LocaleKeys.passwordMustLeastCharactersLong);
+            }
+            if (widget.validateFunc != null) return widget.validateFunc!(value);
+            return null;
           },
       suffixText: widget.suffixText,
       formatter: widget.formatter,

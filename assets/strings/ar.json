@@ -39,6 +39,8 @@
   "enterCode": "ادخل الكودد",
   "msgInvalidPhoneNumber": "رقم الهاتف غير صحيح",
   "phoneMustBeEntered": "يجب إدخال رقم الهاتف",
+  "passwordMustLeastCharactersLong": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+  "passwordRequired": "يلزم ادخال كلمه المرور",
   "phoneNotRegistered": "رقم الهاتف غير مسجل",
   "msgFormFieldRequired": "الحقل مطلوب",
   "chooseFromGallery": "اختر من المعرض",

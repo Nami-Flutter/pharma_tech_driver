@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart'as local;
 import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/resources/app_colors.dart';
+import 'package:pharma_tech_driver/presentation/modules/auth/login/provider/login_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/logger.dart';
 import '../../../../core/res/text_styles.dart';
@@ -14,10 +15,7 @@ import '../../../../data/repository/SaveUserData.dart';
 import '../../../../injection.dart';
 import '../../../component/component.dart';
 import '../../../component/svg_icon.dart';
-import '../../home/home.dart';
 import '../../splash/splash.dart';
-import '../auth_view_model.dart';
-import '../widgets/country_sheet.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -27,36 +25,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController _phoneController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  LoginLogoutViewModel provider = getIt();
 
-  void _onSubmit(BuildContext context) async {
-    if (_formKey.currentState != null) {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-        String phone = _phoneController.text;
-        if (phone.isEmpty) {
-          Provider.of<AuthViewModel>(context, listen: false).validationMsg = local.tr(LocaleKeys.phoneMustBeEntered);
-        } else if (phone.length < 7) {
-          Provider.of<AuthViewModel>(context, listen: false).validationMsg = local.tr(LocaleKeys.msgInvalidPhoneNumber);
-        } else {
-          String modifiedPhone = removeLeadingZeroFromString(phone);
-          // print("kjjjkkkkk${modifiedPhone}");
-         // Provider.of<AuthViewModel>(context, listen: false).sendOTPFirebase(context, modifiedPhone);
-       Provider.of<AuthViewModel>(context, listen: false).login( phone: modifiedPhone, context: context);
-        }
-      }
-    }
-  }
-  String removeLeadingZeroFromString(String input) {
-    if (input.isEmpty) {
-      return input;
-    }
-    if (input[0] == '0') {
-      input = input.substring(1);
-    }
-    return input;
-  }
   SaveUserData saveUserData = getIt();
   final tag = 'ChangeLanguageSheet';
   late Locale locale = context.locale;
@@ -65,14 +35,13 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
+    provider.initLogin();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       isSwitch = (context.locale.languageCode == 'en') ? true : false;
     });
   }
   @override
   Widget build(BuildContext context) {
-    bool isLoading = context.watch<AuthViewModel>().loading;
-
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return CustomScaffold(
       appBar:CustomAppBar(height: 0.h),
@@ -112,13 +81,14 @@ class _LoginState extends State<Login> {
                             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                               log('onLanguageSelected', 'change language to (${locale.languageCode})');
                               saveUserData.saveLang(locale.languageCode);
-                              if (saveUserData.getUserData()?.data?.user?.id !=null) {
-                                Provider.of<AuthViewModel>(context,listen: false).updateFCMToken();
+                              if (saveUserData.getUserData()?.data?.delegate?.id !=null) {
+                                WidgetsBinding.instance.addPostFrameCallback((timeStamp){
+                                    provider.updateFCMToken();
+                                });
                               }
                               context.setLocale(locale);
                               pushAndRemoveUntil(Splash());
                             });
-
                           }),
                     ],
                   ),
@@ -135,13 +105,13 @@ class _LoginState extends State<Login> {
                 children: [
                   ListAnimator(
                     children: [
-                      SizedBox(height: 20.h),
+                      VerticalSpace(AppSize.s4.h),
                       SVGIcon(
                         Assets.logIn,
                         height: 160.h,
                         width: 104.36.w
                       ),
-                      VerticalSpace(AppSize.s24.h),
+                      VerticalSpace(AppSize.s8.h),
                       Text(
                          local.tr(LocaleKeys.tittleLogin),
                         style: const TextStyle()
@@ -154,7 +124,7 @@ class _LoginState extends State<Login> {
                             .bodyStyle(fontSize: FontSize.s14.sp)
                             .customColor(AppColors.gray),
                       ),
-                      VerticalSpace(AppSize.s16.h),
+                      VerticalSpace(AppSize.s8.h),
                       Row(children: [
                         SVGIcon(Assets.phoneIcon,color: AppColors.primaryColor,width: 20.w,height: 20.h),
                         SizedBox(width: 5.w),
@@ -168,10 +138,8 @@ class _LoginState extends State<Login> {
                       _buildForm(),
                       VerticalSpace(AppSize.s4.h),
                       CustomButton(
-                        loading: isLoading,
                         onTap: () {
-                          // _onSubmit(context);
-                          push(HomeScreen());
+                          provider.onSubmit(context);
                         },
                         title:  local.tr(LocaleKeys.login),
                       ),
@@ -197,20 +165,17 @@ class _LoginState extends State<Login> {
 
   _buildForm() {
     return Form(
-      key: _formKey,
+      key: provider.formKey,
       child: Column(
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: CustomTextFieldPhone(
-                  validationMSG:
-                      Provider.of<AuthViewModel>(context, listen: true).validationMSG,
+                  validationMSG: provider.validationMSG,
                   hint: '0XXXXXXXX',
                   hintStyle: TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.gray),
-                  suffixData:Text('+218',style:
-                      TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.black)) ,
-                  controller: _phoneController,
+                  controller: provider.phoneController,
                   hintTextDirection: TextDirection.ltr,
                   background:AppColors.grayLight,
                 ),
@@ -221,27 +186,20 @@ class _LoginState extends State<Login> {
           Row(children: [
             SVGIcon(Assets.password,color: AppColors.primaryColor,width: 20.w,height: 20.h),
             SizedBox(width: 5.w),
-            Text(
-               local.tr(LocaleKeys.password),
+            Text(local.tr(LocaleKeys.password),
               style: const TextStyle()
                   .regularStyle(fontSize: FontSize.s14.sp)
                   .customColor(AppColors.black),
             ),
           ],),
           SizedBox(height: 10.h),
-          CustomTextFieldPassword(hint: LocaleKeys.enterYourPassword.tr(),background:AppColors.grayLight,
+          CustomTextFieldPassword(
+            validationMSG: provider.validationMSG,
+            controller: provider.passwordController,
+            hint: LocaleKeys.enterYourPassword.tr(),background:AppColors.grayLight,
             hintStyle: TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.gray),)
         ],
       ),
     );
   }
-
-  // Future<dynamic> showChangeCountrySheet(BuildContext context) async {
-  //   return showModalBottomSheet(
-  //     // expand: false,
-  //     context: context,
-  //     backgroundColor: Colors.transparent,
-  //     builder: (context) => const SafeArea(child: countrySheet()),
-  //   );
-  // }
 }
