@@ -7,8 +7,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pharma_tech_driver/presentation/modules/home/Notifications/provider/notifications_provider.dart';
 import 'package:provider/provider.dart';
 import '../../core/routing/route.dart';
+import '../modules/home/orderDetails/orderDetails.dart';
+import '../modules/home/orderDetails/order_details_view_model.dart';
+import '../modules/home/provider/home_provider.dart';
 
 class NotificationServices {
 
@@ -73,11 +77,11 @@ class NotificationServices {
     print('Received a foreground message: ${message.data["order_id"]}');
     var notiType = message.data["type"].toString();
     // Provider.of<HomeViewModel>(context, listen: false).getNotificationCount(context);
-    // Provider.of<HomeViewModel>(context, listen: false).getNotification(context);
+    Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();
     if(notiType == "order"){
       print('111111111111111');
-      // Provider.of<MyOrdersViewModel>(context, listen: false).getOneOrderApi(context,message.data["order_id"].toString());
-      // Provider.of<MyOrdersViewModel>(context, listen: false).getMyOrdersApi(context,"new");
+      Provider.of<OrderDetailsViewModel>(context, listen: false).getOrder(message.data["order_id"].toString());
+      Provider.of<HomeViewModel>(context, listen: false).getAllOrders();
     }
   }
 
@@ -207,7 +211,7 @@ class NotificationServices {
     }else if(notiType == "order") {
       print('444444444');
       Timer( Duration(seconds: isTerminatedApp ? 6 : 0), () {
-        // push(OrderDetails(orderId: message.data["order_id"].toString(),));
+        push(OrderDetails(orderId: message.data["order_id"].toString(),));
       });
     }
   }

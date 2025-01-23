@@ -16,24 +16,24 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  // NotificationServices notificationServices = NotificationServices();
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // notificationServices.requestNotificationPermission();
-    // notificationServices.requestPermission();
-    // notificationServices.forgroundMessage();
-    // notificationServices.firebaseInit(context);
-    // notificationServices.setupInteractMessage(context);
-    //
-    // notificationServices.getDeviceToken().then((value){
-    //   if (kDebugMode) {
-    //     print('device token');
-    //     print(value);
-    //   }
-    // });
+    notificationServices.requestNotificationPermission();
+    notificationServices.requestPermission();
+    notificationServices.forgroundMessage();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage(context);
+
+    notificationServices.getDeviceToken().then((value){
+      if (kDebugMode) {
+        print('device token');
+        print(value);
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {

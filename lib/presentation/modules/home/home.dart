@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   SaveUserData saveUserData =getIt();
   @override
   void initState() {
-    Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();});
     _loadData();
     super.initState();
   }
