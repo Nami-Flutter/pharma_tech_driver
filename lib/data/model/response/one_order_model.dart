@@ -385,6 +385,7 @@ class OrderUser {
 
 class UserUser {
   int? id;
+  String? name;
   String? firstName;
   String? lastName;
   String? phoneCode;
@@ -397,6 +398,7 @@ class UserUser {
 
   UserUser({
     this.id,
+    this.name,
     this.firstName,
     this.lastName,
     this.phoneCode,
@@ -410,6 +412,7 @@ class UserUser {
 
   factory UserUser.fromJson(Map<String, dynamic> json) => UserUser(
     id: json["id"],
+    name: json["name"],
     firstName: json["first_name"],
     lastName: json["last_name"],
     phoneCode: json["phone_code"],
@@ -423,6 +426,7 @@ class UserUser {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "name": name,
     "first_name": firstName,
     "last_name": lastName,
     "phone_code": phoneCode,

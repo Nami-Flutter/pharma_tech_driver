@@ -147,7 +147,7 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
                   ),
                   VerticalSpace(3.h),
                   Text(
-                    widget.oneOrder?.data?.order?.payType??'',
+                    (widget.oneOrder?.data?.order?.payType??'').tr(),
                     style: TextStyles()
                         .getRegularStyle(fontSize: 14.sp)
                         .customColor(AppColors.black),
@@ -226,47 +226,47 @@ SocialMediaHelper socialMediaHelper =SocialMediaHelper();
               ),
             ],
           ):SizedBox(),
-          VerticalSpace(20.h),
-          Row(
-            children: [
-              const SVGIcon(
-                Assets.mapIcon,
-                color: AppColors.primaryColor,
-              ),
-              HorizontalSpace(12.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    LocaleKeys.addressDetail.tr(),
-                    style: TextStyles()
-                        .getRegularStyle(fontSize: 12.sp)
-                        .customColor(AppColors.gray),
-                  ),
-                  VerticalSpace(3.h),
-                  SizedBox(
-                    width:MediaQuery.of(context).size.width*0.7,
-                    child: InkWell(
-                      onTap: (){
-                        socialMediaHelper.openGoogleMapByAddress( widget.oneOrder?.data?.order?.addressDetails??'');
-                      },
-                      child: Text(
-                        widget.oneOrder?.data?.order?.addressDetails??'',
-                        style: TextStyles()
-                            .getRegularStyle(fontSize: 14.sp)
-                            .customColor(AppColors.black),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          // VerticalSpace(20.h),
+          // Row(
+          //   children: [
+          //     const SVGIcon(
+          //       Assets.mapIcon,
+          //       color: AppColors.primaryColor,
+          //     ),
+          //     HorizontalSpace(12.w),
+          //     Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       mainAxisSize: MainAxisSize.min,
+          //       children: [
+          //         Text(
+          //           LocaleKeys.addressDetail.tr(),
+          //           style: TextStyles()
+          //               .getRegularStyle(fontSize: 12.sp)
+          //               .customColor(AppColors.gray),
+          //         ),
+          //         VerticalSpace(3.h),
+          //         SizedBox(
+          //           width:MediaQuery.of(context).size.width*0.7,
+          //           child: InkWell(
+          //             onTap: (){
+          //               socialMediaHelper.openGoogleMapByAddress( widget.oneOrder?.data?.order?.addressDetails??'');
+          //             },
+          //             child: Text(
+          //               widget.oneOrder?.data?.order?.addressDetails??'',
+          //               style: TextStyles()
+          //                   .getRegularStyle(fontSize: 14.sp)
+          //                   .customColor(AppColors.black),
+          //               overflow: TextOverflow.ellipsis,
+          //               maxLines: 3,
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
 
-          PhoneCared(name: '${widget.oneOrder?.data?.order?.user?.user?.firstName} ${ widget.oneOrder?.data?.order?.user?.user?.lastName}',
+          PhoneCared(name: widget.oneOrder?.data?.order?.user?.user?.name??'',
             phone:  '${ widget.oneOrder?.data?.order?.user?.user?.phoneCode }${widget.oneOrder?.data?.order?.user?.user?.phone}', image:  widget.oneOrder?.data?.order?.user?.user?.image??'',)
 
         ],

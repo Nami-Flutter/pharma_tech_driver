@@ -72,10 +72,10 @@ class _SettingState extends State<Setting> {
                             title: tr(LocaleKeys.language), onTap: () {
                           showChangeLanguageSheet(context);
                         }),
-                        _buildItem(context,
-                          imageColor:AppColors.primaryColor,
-                            image: Assets.connectUs,
-                            title: tr(LocaleKeys.connectUs), onTap: () {push(ConnectUs());}, ),
+                        // _buildItem(context,
+                        //   imageColor:AppColors.primaryColor,
+                        //     image: Assets.connectUs,
+                        //     title: tr(LocaleKeys.connectUs), onTap: () {push(ConnectUs());}, ),
                         _buildItem(context,
                           imageColor:AppColors.primaryColor,
                             image: Assets.aboutApp,
