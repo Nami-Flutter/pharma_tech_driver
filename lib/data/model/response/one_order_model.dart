@@ -104,8 +104,8 @@ class MainOrderDetail {
   int? productId;
   Product? product;
   int? qty;
-  int? netCost;
-  int? total;
+  num? netCost;
+  num? total;
 
   MainOrderDetail({
     this.id,
@@ -144,18 +144,18 @@ class Product {
   String? details;
   dynamic howToUse;
   dynamic howToStore;
-  int? salesLimit;
-  int? price;
+  num? salesLimit;
+  num? price;
   String? unit;
   double? weightUnit;
   double? priceWeightUnit;
   bool? isOffer;
   int? isActive;
   dynamic offerType;
-  int? offerValue;
-  DateTime? offerStartDate;
-  DateTime? offerEndDate;
-  int? oldPrice;
+  num? offerValue;
+  String? offerStartDate;
+  String? offerEndDate;
+  num? oldPrice;
   bool? isFavorite;
 
   Product({
@@ -200,8 +200,8 @@ class Product {
     isActive: json["is_active"],
     offerType: json["offer_type"],
     offerValue: json["offer_value"],
-    offerStartDate: json["offer_start_date"] == null ? null : DateTime.parse(json["offer_start_date"]),
-    offerEndDate: json["offer_end_date"] == null ? null : DateTime.parse(json["offer_end_date"]),
+    offerStartDate: json["offer_start_date"] ,
+    offerEndDate: json["offer_end_date"],
     oldPrice: json["old_price"],
     isFavorite: json["is_favorite"],
   );
@@ -224,8 +224,8 @@ class Product {
     "is_active": isActive,
     "offer_type": offerType,
     "offer_value": offerValue,
-    "offer_start_date": "${offerStartDate!.year.toString().padLeft(4, '0')}-${offerStartDate!.month.toString().padLeft(2, '0')}-${offerStartDate!.day.toString().padLeft(2, '0')}",
-    "offer_end_date": "${offerEndDate!.year.toString().padLeft(4, '0')}-${offerEndDate!.month.toString().padLeft(2, '0')}-${offerEndDate!.day.toString().padLeft(2, '0')}",
+    "offer_start_date": offerStartDate,
+    "offer_end_date": offerEndDate,
     "old_price": oldPrice,
     "is_favorite": isFavorite,
   };
@@ -235,7 +235,7 @@ class Category {
   int? id;
   String? image;
   String? title;
-  DateTime? createdAt;
+  String? createdAt;
 
   Category({
     this.id,
@@ -248,14 +248,14 @@ class Category {
     id: json["id"],
     image: json["image"],
     title: json["title"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    createdAt: json["created_at"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "image": image,
     "title": title,
-    "created_at": createdAt?.toIso8601String(),
+    "created_at": createdAt,
   };
 }
 
@@ -273,8 +273,8 @@ class Order {
   String? payType;
   bool? isPaid;
   bool? isPoints;
-  int? pointsCount;
-  int? pointsValue;
+  num? pointsCount;
+  num? pointsValue;
   num? driverCost;
   num? netTotal;
   num? taxValue;
@@ -391,7 +391,7 @@ class UserUser {
   String? phoneCode;
   String? phone;
   String? image;
-  int? points;
+  num? points;
   String? invitationCode;
   int? cityId;
   City? city;
@@ -442,7 +442,7 @@ class UserUser {
 class City {
   int? id;
   String? title;
-  int? deliveryCost;
+  num? deliveryCost;
   int? regionId;
 
   City({
