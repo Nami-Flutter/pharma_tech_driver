@@ -103,12 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(horizontal:2.w),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r),color: AppColors.green),
-                      child: Text(
-                        context.read<NotificationViewModel>().notificationModel?.data?.length.toString()??'0',
-                        style: const TextStyle()
-                            .bodyStyle(fontSize: FontSize.s10.sp)
-                            .customColor(AppColors.white),
-                        textAlign: TextAlign.center,
+                      child: Selector<NotificationViewModel, int?>(
+                          selector: (context, counter) => counter.notificationModel?.data?.length??0,
+                          builder: (context, count, child) {
+                          return Text(
+                            count.toString(),
+                            style: const TextStyle()
+                                .bodyStyle(fontSize: FontSize.s10.sp)
+                                .customColor(AppColors.white),
+                            textAlign: TextAlign.center,
+                          );
+                        }
                       ),
                     ))
                   ],

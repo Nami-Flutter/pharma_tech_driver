@@ -3,6 +3,8 @@
   "productDetails": "Product Details",
   "thePrice": "the Price :",
   "theTotal": "Total :",
+  "delete": "Delete",
+  "deleteAll": "Delete All",
   "addToCart": "Add to Cart",
   "addQuantity": "Quantity must be added",
   "productAlreadyInCart": "The product is already in the cart",

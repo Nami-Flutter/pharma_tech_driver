@@ -89,6 +89,8 @@
   "message":"الرسالة",
   "email":"البريد الالكتروني",
   "send": "ارسال",
+  "delete": "حذف",
+  "deleteAll": "حذف الكل",
   "cancel": "الغاء",
   "deleteAccount": "حذف الحساب ؟",
   "WhoAre": "من نحن",

@@ -49,4 +49,20 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> deleteNotificationRepo(String id) async {
+    try {
+      Response response = await dioClient.post(AppURL.kDeleteNotificationsURI + id);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> deleteAllNotificationRepo() async {
+    try {
+      Response response = await dioClient.post(AppURL.kDeleteAllNotificationsURI);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

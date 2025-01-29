@@ -8,6 +8,8 @@ abstract class  LocaleKeys {
   static const store = 'store';
   static const cancel = 'cancel';
   /// Auth Model
+  static const delete  = 'delete';
+  static const deleteAll  = 'deleteAll';
   static const codeIsWrong = 'codeIsWrong';
   static const tittleLogin = 'tittleLogin';
   static const bodyLogin = 'bodyLogin';

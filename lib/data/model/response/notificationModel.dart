@@ -25,13 +25,17 @@ class NotificationModel {
 
 class OneNoti {
   int? id;
+  int? orderId;
   String? title;
+  String? type;
   String? body;
   String? createdAt;
 
   OneNoti({
     this.id,
     this.title,
+    this.type,
+    this.orderId,
     this.body,
     this.createdAt,
   });
@@ -39,6 +43,8 @@ class OneNoti {
   factory OneNoti.fromJson(Map<String, dynamic> json) => OneNoti(
     id: json["id"],
     title: json["title"],
+    type: json["type"],
+    orderId: json["order_id"],
     body: json["body"],
     createdAt: json["created_at"],
   );
@@ -47,6 +53,8 @@ class OneNoti {
     "id": id,
     "title": title,
     "body": body,
+    "order_id": orderId,
+    "type": type,
     "created_at": createdAt,
   };
 }
