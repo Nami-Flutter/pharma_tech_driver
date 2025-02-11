@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(width: 110.w,
+                        SizedBox(width: 165.w,
                           child: CustomButton(
                             onTap: () async {
                               setState(() {
@@ -158,28 +158,28 @@ class _HomeScreenState extends State<HomeScreen> {
                             title:LocaleKeys.theNew.tr(),
                           ),
                         ),
+                        // SizedBox(
+                        //   width: 110.w,
+                        //   child: CustomButton(
+                        //     onTap: () async {
+                        //       setState(() {
+                        //         isClicked = 1;
+                        //         data.status='on_way';
+                        //       });
+                        //       controller.animateToPage(isClicked,
+                        //           duration: const Duration(seconds: 1),
+                        //           curve: Curves.easeInOut);
+                        //       _loadData();
+                        //     },
+                        //     title: LocaleKeys.current.tr(),
+                        //     // width: 108.67.w,
+                        //     textColor: isClicked == 1
+                        //         ? AppColors.white
+                        //         : AppColors.gray,
+                        //     color: isClicked == 1 ? AppColors.primaryColor : AppColors.grayLight,),
+                        // ),
                         SizedBox(
-                          width: 110.w,
-                          child: CustomButton(
-                            onTap: () async {
-                              setState(() {
-                                isClicked = 1;
-                                data.status='on_way';
-                              });
-                              controller.animateToPage(isClicked,
-                                  duration: const Duration(seconds: 1),
-                                  curve: Curves.easeInOut);
-                              _loadData();
-                            },
-                            title: LocaleKeys.current.tr(),
-                            // width: 108.67.w,
-                            textColor: isClicked == 1
-                                ? AppColors.white
-                                : AppColors.gray,
-                            color: isClicked == 1 ? AppColors.primaryColor : AppColors.grayLight,),
-                        ),
-                        SizedBox(
-                          width: 110.w,
+                          width: 165.w,
                           child: CustomButton(
                             onTap: () async {
                               setState(() {
