@@ -26,6 +26,8 @@ abstract class  LocaleKeys {
   static const enterCode = 'enterCode';
   static const msgInvalidPhoneNumber  = 'msgInvalidPhoneNumber';
   static const passwordMustLeastCharactersLong  = 'passwordMustLeastCharactersLong';
+  static const passwordsDoNotMatch  = 'Passwords do not match';
+  static const nameRequired  = 'Name required';
   static const passwordRequired  = 'passwordRequired';
   static const phoneMustBeEntered  = 'phoneMustBeEntered';
   static const phoneNotRegistered  = 'phoneNotRegistered';
@@ -37,6 +39,7 @@ abstract class  LocaleKeys {
   static const createAccountLogin  = 'createAccountLogin';
   static const locationSpecified  = 'locationSpecified';
   static const password  = 'password';
+  static const confirmPassword  = 'Confirm password';
   static const enterYourPassword  = 'enterYourPassword';
 
   ///branches screen

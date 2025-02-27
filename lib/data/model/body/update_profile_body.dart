@@ -1,26 +1,30 @@
 import 'dart:io';
 
 class UpdateProfileBody  {
-  String? firstName;
-  String? lastName;
+  String? phone;
+  String? name;
+  String? password;
   File? image;
 
 
   UpdateProfileBody({
-    this.firstName,
-    this.lastName,
+    this.phone,
+    this.name,
+    this.password,
     this.image,
   });
 
   factory UpdateProfileBody.fromJson(Map<String, dynamic> json) => UpdateProfileBody(
-    firstName: json["first_name"],
-    lastName: json["last_name"],
+    phone: json["phone"],
+    password: json["password"],
+    name: json["name"],
      image: json["image"],
   );
 
   Map<String, dynamic> toJson() => {
-    "first_name": firstName,
-    "last_name": lastName,
+    "phone": phone,
+    "password": password,
+    "name": name,
      "image": image,
   };
 }

@@ -133,13 +133,16 @@
   "viewAll": "View All",
   "latestProducts": "Latest Products",
   "kg": " K.G ",
-  "sar": " EGP ",
+  "sar": " LYD ",
   "city": "City",
   "jeddah": "Jeddah",
   "riyadh": "Riyadh",
   "notification": "Notification",
   "success": "Success",
   "addedSuccessfully": "Added Successfully",
+  "Confirm password": "Confirm password",
+  "Passwords do not match": "Passwords do not match",
+  "Name required": "Name required",
 
 
   "ordersStats": "Orders stats",

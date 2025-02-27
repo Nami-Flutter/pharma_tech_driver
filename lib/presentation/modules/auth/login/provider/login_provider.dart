@@ -30,6 +30,8 @@ class LoginLogoutViewModel with ChangeNotifier {
   UserModel? _userModel;
   EmptyDataModel? _emptyDataModel;
 
+  String phoneCode = '+218';
+
   ///getters
   bool get isLoading => _isLoading;
   String? get validationMSG => _validationMSG;
@@ -74,7 +76,7 @@ class LoginLogoutViewModel with ChangeNotifier {
       _userModel = UserModel.fromJson(responseModel.response?.data);
       if (_userModel != null && _userModel?.code == 200) {
         if (_userModel?.data?.delegate?.id != null) {
-          saveUserData.saveUserData(_userModel!);
+          saveUserData.saveUserData(_userModel!,false);
           saveUserData.saveUserToken(_userModel?.data?.auth?.token ?? '');
         }
         ToastUtils.showToast(LocaleKeys.loggedInSuccessfully.tr());

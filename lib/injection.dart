@@ -8,6 +8,7 @@ import 'package:pharma_tech_driver/presentation/modules/home/Notifications/provi
 import 'package:pharma_tech_driver/presentation/modules/home/orderDetails/order_details_view_model.dart';
 import 'package:pharma_tech_driver/presentation/modules/home/provider/home_provider.dart';
 import 'package:pharma_tech_driver/presentation/modules/setting/settingViewModel.dart';
+import 'package:pharma_tech_driver/presentation/modules/setting/update_profile/update_profile_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'core/network_info.dart';
@@ -33,6 +34,7 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => SettingViewModel(settingRepo: getIt(), saveUserData: getIt()));
   getIt.registerLazySingleton(() => NotificationViewModel(homeRepo: getIt(), saveUserData: getIt()));
   getIt.registerLazySingleton(() => ProductProvider());
+  getIt.registerLazySingleton(() => UpdateProfileViewModel(saveUserData: getIt(), authRepo: getIt()));
 
   /// Repository
   getIt.registerLazySingleton(() => SaveUserData(sharedPreferences: getIt(), dioClient: getIt()));

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/core/resources/app_colors.dart';
 import 'package:pharma_tech_driver/presentation/modules/auth/login/provider/login_provider.dart';
-import 'package:provider/provider.dart';
 import '../../../../core/logger.dart';
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_assets.dart';
@@ -170,18 +169,60 @@ class _LoginState extends State<Login> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
+              SizedBox(width: 247.w,
                 child: CustomTextFieldPhone(
-                  validationMSG: provider.validationMSG,
+                  validationMSG:provider.validationMSG,
                   hint: '0XXXXXXXX',
                   hintStyle: TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.gray),
+                  suffixData:Text('+218',style:
+                  TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.black)) ,
                   controller: provider.phoneController,
                   hintTextDirection: TextDirection.ltr,
                   background:AppColors.grayLight,
                 ),
               ),
+              Container(
+                // margin: EdgeInsets.only(bottom:(_phoneController.text.isEmpty||_phoneController.text.length<7)? 25.h: 0.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 10.h),
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.lightGray,width: 1.w),
+                  borderRadius: BorderRadius.circular(12.r),
+                  color: AppColors.grayLight,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 16.r,
+                    ),
+                    HorizontalSpace(4.w),
+                    SVGIcon(
+                      provider.phoneCode == '+218'
+                          ?Assets.libiaFlag:
+                      Assets.flag,
+                      width: 48.w,
+                      height: 32.h,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
+
+          // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Expanded(
+          //       child: CustomTextFieldPhone(
+          //         validationMSG: provider.validationMSG,
+          //         hint: '0XXXXXXXX',
+          //         hintStyle: TextStyles().getRegularStyle(fontSize: 12.sp).customColor(AppColors.gray),
+          //         controller: provider.phoneController,
+          //         hintTextDirection: TextDirection.ltr,
+          //         background:AppColors.grayLight,
+          //       ),
+          //     ),
+          //   ],
+          // ),
           SizedBox(height: 10.h),
           Row(children: [
             SVGIcon(Assets.password,color: AppColors.primaryColor,width: 20.w,height: 20.h),

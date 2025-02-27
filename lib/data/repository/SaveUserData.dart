@@ -14,8 +14,10 @@ class SaveUserData {
 
   /// save SharedData
 
-  Future<void> saveUserData(UserModel userData) async {
-    dioClient.updateHeader(userData.data?.auth?.token ?? "");
+  Future<void> saveUserData(UserModel userData,bool isUpdate) async {
+    if(isUpdate==false){
+      dioClient.updateHeader(userData.data?.auth?.token ?? "");
+    }
     String userSavedData = json.encode(userData);
     try {
       await sharedPreferences.setString(AppConstants.userData, userSavedData);

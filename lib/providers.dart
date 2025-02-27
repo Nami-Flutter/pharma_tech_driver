@@ -5,6 +5,7 @@ import 'package:pharma_tech_driver/presentation/modules/home/Notifications/provi
 import 'package:pharma_tech_driver/presentation/modules/home/orderDetails/order_details_view_model.dart';
 import 'package:pharma_tech_driver/presentation/modules/home/provider/home_provider.dart';
 import 'package:pharma_tech_driver/presentation/modules/setting/settingViewModel.dart';
+import 'package:pharma_tech_driver/presentation/modules/setting/update_profile/update_profile_view_model.dart';
 import 'package:provider/provider.dart';
 import 'data/datasource/locale/locale_data_source.dart';
 import 'injection.dart';
@@ -25,6 +26,7 @@ class GenerateMultiProvider extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => getIt<OrderDetailsViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<NotificationViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<ProductProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<UpdateProfileViewModel>()),
       ],
       child: child,
     );

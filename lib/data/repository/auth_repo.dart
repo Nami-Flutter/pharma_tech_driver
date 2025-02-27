@@ -52,21 +52,22 @@ class AuthRepo {
     }
   }
 
-//   Future<ApiResponse> updateProfile(UpdateProfileBody? updateProfileBody) async {
-//   try {
-//     Response response = await dioClient.post(
-//       AppURL.kUpdateProfileURI,
-//       data: FormData.fromMap({
-//         "first_name": updateProfileBody?.firstName??'',
-//         "last_name": updateProfileBody?.lastName??'',
-//         "image":  updateProfileBody?.image == null ? null : await MultipartFile.fromFile(updateProfileBody!.image!.path),
-//       }),
-//     );
-//     return ApiResponse.withSuccess(response);
-//   } catch (e) {
-//     return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-//   }
-// }
+  Future<ApiResponse> updateProfile(UpdateProfileBody? updateProfileBody) async {
+  try {
+    Response response = await dioClient.post(
+      AppURL.kUpdateProfileURI,
+      data: FormData.fromMap({
+        "phone": updateProfileBody?.phone??'',
+        "password": (updateProfileBody?.password=='********')?'':updateProfileBody?.password??'',
+        "name": updateProfileBody?.name??'',
+        "image":  updateProfileBody?.image == null ? null : await MultipartFile.fromFile(updateProfileBody!.image!.path),
+      }),
+    );
+    return ApiResponse.withSuccess(response);
+  } catch (e) {
+    return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+  }
+}
 // Future<ApiResponse> deleteAccount() async {
 //   try {
 //     Response response = await dioClient.post(

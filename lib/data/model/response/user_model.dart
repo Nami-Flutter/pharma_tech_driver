@@ -63,12 +63,14 @@ class Delegate {
   int? id;
   int? adminId;
   String? name;
+  String? image;
   String? phone;
 
   Delegate({
     this.id,
     this.adminId,
     this.name,
+    this.image,
     this.phone,
   });
 
@@ -76,6 +78,7 @@ class Delegate {
     id: json["id"],
     adminId: json["admin_id"],
     name: json["name"],
+    image: json["image"],
     phone: json["phone"],
   );
 
@@ -83,6 +86,7 @@ class Delegate {
     "id": id,
     "admin_id": adminId,
     "name": name,
+    "image": image,
     "phone": phone,
   };
 }

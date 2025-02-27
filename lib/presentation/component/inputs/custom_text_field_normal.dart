@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
+import 'package:easy_localization/easy_localization.dart' as el;
 
+import '../../../core/resources/locale_keys.g.dart';
 import 'base_form.dart';
 
 class CustomTextFieldNormal extends StatelessWidget {
@@ -22,6 +24,7 @@ class CustomTextFieldNormal extends StatelessWidget {
   final bool isRequired;
   final bool autofocus;
   final bool enable;
+  final String? validationMSG;
 
   final int? lines;
   final int? maxLength;
@@ -79,7 +82,7 @@ class CustomTextFieldNormal extends StatelessWidget {
     this.onSubmit,
     this.controller,
     this.textInputAction,
-     this.type,
+     this.type, this.validationMSG,
   }) : super(key: key);
 
   @override
@@ -107,7 +110,14 @@ class CustomTextFieldNormal extends StatelessWidget {
       radius: radius,
       onChange: onChange,
       suffixIconData: suffixIconData,
-      validateFunc: validateFunc ,
+      validateFunc: validateFunc ??
+              (value) {
+            if ((value ?? '').length != 9) {
+              return el.tr(validationMSG??LocaleKeys.msgInvalidPhoneNumber);
+            }
+            if (validateFunc != null) return validateFunc!(value);
+            return null;
+          },
       suffixText: suffixText,
       formatter: formatter,
       type: type ?? TextInputType.text,

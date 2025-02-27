@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import 'package:pharma_tech_driver/presentation/component/appbars/custom_app_bar.dart';
 import 'package:pharma_tech_driver/presentation/modules/auth/login/login.dart';
+import 'package:pharma_tech_driver/presentation/modules/setting/update_profile/update_profile.dart';
 import 'package:pharma_tech_driver/presentation/modules/setting/widget/delete_account_dialog.dart';
 import 'package:pharma_tech_driver/presentation/modules/setting/widget/logout_dialog.dart';
 import '../../../../core/res/text_styles.dart';
@@ -16,8 +17,6 @@ import '../../component/buttons/custom_text_button.dart';
 import '../../component/svg_icon.dart';
 import 'about_app/about_app.dart';
 import 'change_language/change_language_sheet.dart';
-import 'connect_Us/connect_us.dart';
-import 'modify_the_account/modify_the_account.dart';
 import 'widget/custom_settind_cared.dart';
 
 class Setting extends StatefulWidget {
@@ -59,13 +58,13 @@ class _SettingState extends State<Setting> {
                                 .customColor( AppColors.gray),
                           ),
                         ),
-                        // _buildItem(context,
-                        //     imageColor:AppColors.primaryColor,
-                        //     image: Assets.modifyTheAccount,
-                        //     title: tr(LocaleKeys.modifyTheAccount),
-                        //     onTap: () {
-                        //         push(ModifyTheAccount());
-                        //     }),
+                        _buildItem(context,
+                            imageColor:AppColors.primaryColor,
+                            image: Assets.modifyTheAccount,
+                            title: tr(LocaleKeys.modifyTheAccount),
+                            onTap: () {
+                                push(ModifyTheAccount());
+                            }),
                         _buildItem(context,
                             imageColor:AppColors.primaryColor,
                             image: Assets.language,

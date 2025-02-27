@@ -11,6 +11,7 @@ class AppURL {
   static const String kContactUsURL = "contact-us";
   static const String kDeleteNotificationsURI = "delegate/auth/deleteNotification/";
   static const String kDeleteAllNotificationsURI = "delegate/auth/deleteAllNotifications";
+  static const String kUpdateProfileURI = "delegate/auth/updateProfile";
   ///setting
 
   static const String kSettingURI = "setting";
