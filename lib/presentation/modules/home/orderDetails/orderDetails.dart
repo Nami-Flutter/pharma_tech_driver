@@ -76,7 +76,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                   // height: 12.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16.r),
-                                      color: (AppColors.primaryColor)),
+                                      color: ((data.oneOrderModel?.data?.status == 'canceled')?AppColors.errorColor:AppColors.primaryColor)),
                                 ),
                               ]),
                               Align(alignment: Alignment.center,
@@ -85,10 +85,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                                       ? LocaleKeys.receiveOrder.tr()
                                       : (data.oneOrderModel?.data?.status == 'on_way')
                                       ? LocaleKeys.on_way.tr()
-                                      : LocaleKeys.expiredOrder.tr(),
+                                      :(data.oneOrderModel?.data?.status == 'canceled')
+                                      ? LocaleKeys.cancelledRequest.tr()
+                                      :LocaleKeys.expiredOrder.tr(),
                                   style: TextStyles()
                                       .getTitleStyle(fontSize:  14.sp)
-                                      .customColor((data.oneOrderModel?.data?.status == 'ended'||data.oneOrderModel?.data?.status == 'on_way')?AppColors.white:Colors.black),
+                                      .customColor((data.oneOrderModel?.data?.status == 'ended'||data.oneOrderModel?.data?.status == 'on_way'||data.oneOrderModel?.data?.status == 'canceled')?AppColors.white:Colors.black),
                                   textAlign: TextAlign.center,
                                 ),)
                             ],

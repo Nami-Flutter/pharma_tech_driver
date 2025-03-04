@@ -130,13 +130,15 @@ class _CustomCaredState extends State<CustomCared> {
                   borderRadius: BorderRadius.circular(12.r),
                   color: widget.data?.status == 'new' ? AppColors.second.withOpacity(.1):
                   widget.data?.status == 'on_way' ?AppColors.green.withOpacity(.2):
-                  widget.data?.status == 'ended' ? AppColors.primaryColor.withOpacity(.2):AppColors.errorColor.withOpacity(.2),
+                  widget.data?.status == 'ended' ? AppColors.primaryColor.withOpacity(.2):
+                  widget.data?.status == 'canceled' ? AppColors.errorColor.withOpacity(.2):AppColors.errorColor.withOpacity(.2),
               ),
               child: Center(
                 child: Text(
                 widget.data?.status == 'new' ?LocaleKeys.new1.tr():
                 widget.data?.status  == 'on_way' ?LocaleKeys.on_way.tr():
                 widget.data?.status  == 'ended' ?LocaleKeys.expiredOrder.tr():
+                widget.data?.status  == 'canceled' ?LocaleKeys.cancelledRequest.tr():
                     LocaleKeys.done.tr(),
                   style: TextStyles()
                       .getRegularStyle(fontSize: 14.sp)

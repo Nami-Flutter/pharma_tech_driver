@@ -7,6 +7,7 @@ abstract class  LocaleKeys {
   static const error = 'error';
   static const store = 'store';
   static const cancel = 'cancel';
+  static const canceled = 'canceled';
   /// Auth Model
   static const delete  = 'delete';
   static const deleteAll  = 'deleteAll';
@@ -88,6 +89,7 @@ abstract class  LocaleKeys {
   static const String previous = 'Previous';
   static const String details = 'details';
   static const String expiredOrder = 'expiredOrder';
+  static const String cancelledRequest = 'cancelledRequest';
   static const String orderDetails = 'orderDetails';
   static const String receiveOrder = 'receiveOrder';
   static const String successfullyDelivered = 'successfullyDelivered';

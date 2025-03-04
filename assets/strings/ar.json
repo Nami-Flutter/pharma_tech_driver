@@ -106,6 +106,7 @@
   "Previous": "السابقة",
   "details": "التفاصيل",
   "expiredOrder": "طلب منتهي",
+  "cancelledRequest": "طلب ملغي",
   "orderDetails": "تفاصيل الطلب",
   "modify": "تعديل",
   "received": "تم استلام طلبك",
