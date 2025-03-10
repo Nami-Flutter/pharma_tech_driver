@@ -1,5 +1,6 @@
 class AppURL {
-  static const String kBaseURL = "https://pharma-tec.nami-tec.com/api/";
+  // static const String kBaseURL = "https://pharma-tec.nami-tec.com/api/";
+  static const String kBaseURL = "https://pharma-tec.cloud/api/";
   ///Auth
   static const String kLoginURI = "delegate/auth/login";
   static const String kUpdateFCMTokenURI = "delegate/auth/updateToken";
