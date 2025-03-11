@@ -144,7 +144,9 @@ class LoginLogoutViewModel with ChangeNotifier {
   Future<void> updateFCMToken() async {
     print("kkkkkkffffk");
     String? fcmToken = await NotificationServices().getDeviceToken();
+
     if (fcmToken == null) {return;}
+    print("ffll"+fcmToken);
     await authRepo.updateFCMToken(fcmToken: fcmToken);
     notifyListeners();
   }
