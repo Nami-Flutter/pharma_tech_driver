@@ -2,75 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!--
-    NSPrivacyCollectedDataTypes: Lists the types of data your app collects directly.
-    - Customize this section based on your app’s data collection.
-    - If your app collects no data, you can leave this array empty or omit the key.
-    -->
-    <key>NSPrivacyCollectedDataTypes</key>
-    <array>
-        <!-- Example: Collecting email address for account creation -->
-        <dict>
-            <key>NSPrivacyCollectedDataType</key>
-            <string>NSPrivacyCollectedDataTypeEmailAddress</string>
-            <key>NSPrivacyCollectedDataTypePurposes</key>
-            <array>
-                <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
-            </array>
-            <key>NSPrivacyCollectedDataTypeLinked</key>
-            <true/> <!-- True if linked to user identity, false otherwise -->
-        </dict>
-        <!-- Example: Collecting precise location for app features -->
-        <dict>
-            <key>NSPrivacyCollectedDataType</key>
-            <string>NSPrivacyCollectedDataTypePreciseLocation</string>
-            <key>NSPrivacyCollectedDataTypePurposes</key>
-            <array>
-                <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
-            </array>
-            <key>NSPrivacyCollectedDataTypeLinked</key>
-            <false/>
-        </dict>
-        <!-- Add more entries as needed for other data types -->
-    </array>
-    
-    <!--
-    NSPrivacyAccessedAPITypes: Declares sensitive APIs your app uses.
-    - Include only APIs your app directly accesses (e.g., camera, microphone).
-    - Use Apple’s predefined reason codes from their documentation.
-    - Omit this key if no sensitive APIs are used.
-    -->
+    <!-- ما إذا كان التطبيق يتتبع المستخدمين (مثل الإعلانات) -->
+    <key>NSPrivacyTracking</key>
+    <false/>
+
+    <!-- واجهات البرمجة المستخدمة التي تتطلب أسبابًا -->
     <key>NSPrivacyAccessedAPITypes</key>
     <array>
-        <!-- Example: Using the camera for profile pictures -->
+        <!-- مثال: UserDefaults (شائع في تطبيقات Flutter) -->
         <dict>
             <key>NSPrivacyAccessedAPIType</key>
-            <string>NSPrivacyAccessedAPICategoryCamera</string>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
             <key>NSPrivacyAccessedAPITypeReasons</key>
             <array>
-                <string>CA92.1</string> <!-- Reason code for camera access -->
+                <string>CA92.1</string> <!-- السبب: استخدام UserDefaults لوظائف التطبيق -->
             </array>
         </dict>
-        <!-- Add more entries for other APIs as needed -->
+        <!-- أضف واجهات أخرى إذا كنت تستخدمها -->
     </array>
-    
-    <!--
-    NSPrivacyTracking: Indicates if your app tracks users (e.g., for advertising).
-    - Set to <true/> if tracking occurs, <false/> otherwise.
-    -->
-    <key>NSPrivacyTracking</key>
-    <false/> <!-- Change to <true/> if your app tracks users -->
-    
-    <!--
-    NSPrivacyTrackingDomains: Required only if NSPrivacyTracking is <true/>.
-    - List domains involved in tracking.
-    - Omit this key if NSPrivacyTracking is <false/>.
-    -->
-    <!-- Uncomment and customize if tracking is enabled
-    <key>NSPrivacyTrackingDomains</key>
+
+    <!-- أنواع البيانات التي يتم جمعها -->
+    <key>NSPrivacyCollectedDataTypes</key>
     <array>
-        <string>example.com</string>
+        <!-- connectivity_plus: حالة الشبكة (بيانات تشخيصية أخرى) -->
+        <dict>
+            <key>NSPrivacyCollectedDataType</key>
+            <string>NSPrivacyCollectedDataTypeOtherDiagnosticData</string>
+            <key>NSPrivacyCollectedDataTypeLinked</key>
+            <false/>
+            <key>NSPrivacyCollectedDataTypeTracking</key>
+            <false/>
+            <key>NSPrivacyCollectedDataTypePurposes</key>
+            <array>
+                <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
+            </array>
+        </dict>
+        <!-- أضف بيانات أخرى إذا كان تطبيقك يجمعها (مثل الموقع أو معرف الجهاز) -->
     </array>
-    -->
 </dict>
 </plist>
