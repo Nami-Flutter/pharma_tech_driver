@@ -1,0 +1,2 @@
+/Users/ahmedmostafa/Desktop/projects/flutter/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1z5q4231/x86_64/CMakeFiles/edit_cache.dir
+/Users/ahmedmostafa/Desktop/projects/flutter/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1z5q4231/x86_64/CMakeFiles/rebuild_cache.dir

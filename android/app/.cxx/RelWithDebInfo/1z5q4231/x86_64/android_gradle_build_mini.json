@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/ahmedmostafa/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/ahmedmostafa/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/ahmedmostafa/Desktop/projects/flutter/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1z5q4231/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/ahmedmostafa/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/ahmedmostafa/Desktop/projects/flutter/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1z5q4231/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
