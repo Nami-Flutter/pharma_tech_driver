@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/salamon/Developer/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/salamon/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/salamon/Desktop/MyData/namiApps/flutterApps/pharma_tech/pharma_tech_driver/android/app/.cxx/Debug/2o2s5l24/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/salamon/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/salamon/Desktop/MyData/namiApps/flutterApps/pharma_tech/pharma_tech_driver/android/app/.cxx/Debug/2o2s5l24/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
