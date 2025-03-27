@@ -1,0 +1,2 @@
+/Users/salamon/Desktop/MyData/namiApps/flutterApps/pharma_tech/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1428584j/x86/CMakeFiles/edit_cache.dir
+/Users/salamon/Desktop/MyData/namiApps/flutterApps/pharma_tech/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/1428584j/x86/CMakeFiles/rebuild_cache.dir
