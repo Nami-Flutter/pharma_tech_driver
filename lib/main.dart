@@ -8,10 +8,12 @@ import 'app.dart';
 import 'data/datasource/locale/locale_data_source.dart';
 import 'providers.dart';
 import 'injection.dart' as injection;
+import 'firebase_options.dart';
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
-  await Firebase.initializeApp();
-}
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -25,8 +27,9 @@ void main() async {
     prefs.setInt('database_version', currentDatabaseVersion);
   }
   ///
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   ///
   runApp(
        GenerateMultiProvider(

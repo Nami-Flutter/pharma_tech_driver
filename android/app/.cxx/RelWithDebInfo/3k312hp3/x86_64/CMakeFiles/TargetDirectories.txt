@@ -1,0 +1,2 @@
+/Users/nami/StudioProjects/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/3k312hp3/x86_64/CMakeFiles/edit_cache.dir
+/Users/nami/StudioProjects/pharma_tech_driver/android/app/.cxx/RelWithDebInfo/3k312hp3/x86_64/CMakeFiles/rebuild_cache.dir

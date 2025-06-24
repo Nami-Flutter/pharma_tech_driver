@@ -86,7 +86,7 @@ class _SettingState extends State<Setting> {
                             image: Assets.appEvaluation,
                             title: tr(LocaleKeys.appEvaluation),
                             onTap: () {
-                          SocialMediaHelper().openStore("com.nami.pharma_tech", "6471109804");
+                          SocialMediaHelper().openStore("com.app.pharma_tech", "6471109804");
                             },
                             ),
                         // (getUserId.getUserData()?.data?.delegate?.id !=null)? _buildItem(
@@ -108,7 +108,7 @@ class _SettingState extends State<Setting> {
                 ),
                 InkWell(
                   onTap: (){
-                    SocialMediaHelper().openLink("https://nami-tec.com");
+                    SocialMediaHelper().openLink("https://app-tec.com");
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:587705533389:android:66f1feb9dfdfdd61fcba84",
+        "mobilesdk_app_id": "1:587705533389:android:ce652f825ee68c7efcba84",
         "android_client_info": {
-          "package_name": "com.nami.pharma_tech"
+          "package_name": "com.app.pharma_tech"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBnUXI6FRvA_fJoA2qA25MecXPpReJ8tTA"
@@ -20,7 +25,99 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587705533389-csa67u9c6dri4atm1mm4rals0nbanddg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nami.pharmaTechDriver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587705533389:android:3904c36eb9a5d54afcba84",
+        "android_client_info": {
+          "package_name": "com.app.pharma_tech_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnUXI6FRvA_fJoA2qA25MecXPpReJ8tTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587705533389-csa67u9c6dri4atm1mm4rals0nbanddg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nami.pharmaTechDriver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587705533389:android:66f1feb9dfdfdd61fcba84",
+        "android_client_info": {
+          "package_name": "com.nami.pharma_tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587705533389-mj6uvfgp6i91j78bv3kb1rld8pbubjta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nami.pharma_tech",
+            "certificate_hash": "61642f3ea802e6a4fab23543755f16fb350bbc00"
+          }
+        },
+        {
+          "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnUXI6FRvA_fJoA2qA25MecXPpReJ8tTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587705533389-csa67u9c6dri4atm1mm4rals0nbanddg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nami.pharmaTechDriver"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +128,20 @@
           "package_name": "com.nami.pharma_tech_driver"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "587705533389-5ep02lrune7htpsja6l55fmf8g7h5ian.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nami.pharma_tech_driver",
+            "certificate_hash": "61642f3ea802e6a4fab23543755f16fb350bbc00"
+          }
+        },
+        {
+          "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBnUXI6FRvA_fJoA2qA25MecXPpReJ8tTA"
@@ -39,7 +149,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587705533389-2gedjpl2k70t3gn03egdrcdvvdfeagcd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587705533389-csa67u9c6dri4atm1mm4rals0nbanddg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nami.pharmaTechDriver"
+              }
+            }
+          ]
         }
       }
     }

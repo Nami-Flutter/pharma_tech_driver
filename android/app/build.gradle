@@ -26,7 +26,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.nami.pharma_tech_driver"
+    namespace = "com.app.pharma_tech_driver"
 //    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
     compileSdkVersion 35
@@ -34,6 +34,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+
     }
 
     kotlinOptions {
@@ -42,7 +44,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.nami.pharma_tech_driver"
+        applicationId = "com.app.pharma_tech_driver"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
@@ -68,6 +70,11 @@ android {
     }
 }
 
+dependencies {
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+
+}
 flutter {
     source = "../.."
 }
