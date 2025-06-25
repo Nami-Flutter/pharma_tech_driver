@@ -86,7 +86,7 @@ class _SettingState extends State<Setting> {
                             image: Assets.appEvaluation,
                             title: tr(LocaleKeys.appEvaluation),
                             onTap: () {
-                          SocialMediaHelper().openStore("com.app.pharma_tech", "6471109804");
+                          SocialMediaHelper().openStore("com.app.pharma_tech_driver", "6743117605");
                             },
                             ),
                         // (getUserId.getUserData()?.data?.delegate?.id !=null)? _buildItem(
