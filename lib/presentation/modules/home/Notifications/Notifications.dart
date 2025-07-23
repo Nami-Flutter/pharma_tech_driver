@@ -33,6 +33,7 @@ class _NotificationsState extends State<Notifications> {
   Future<void> _loadData() async {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       navigator.currentContext!.read<NotificationViewModel>().initMyNotification();
+      Provider.of<NotificationViewModel>(context, listen: false).getNotificationsCount();
       Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();});}
   @override
   Widget build(BuildContext context) {

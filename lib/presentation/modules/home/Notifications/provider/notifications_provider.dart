@@ -11,6 +11,7 @@ import '../../../../../core/api_checker.dart';
 import '../../../../../core/resources/locale_keys.g.dart';
 import '../../../../../core/utils/showToast.dart';
 import '../../../../../data/model/response/base/api_response.dart';
+import '../../../../../data/model/response/notificationsCountModel.dart';
 import '../../../../../data/repository/SaveUserData.dart';
 import '../../../../component/loadings/progress_dialog.dart';
 
@@ -25,6 +26,7 @@ class NotificationViewModel with ChangeNotifier {
 
   EmptyDataModel ? _emptyDataModel;
   NotificationModel? _notificationModel;
+  NotificationsCountModel? _notificationsCountModel;
   List<OneNoti?> notificationList=[];
   final ScrollController controller = ScrollController();
   int page = 1;
@@ -45,6 +47,7 @@ class NotificationViewModel with ChangeNotifier {
   }
 
   NotificationModel? get notificationModel => _notificationModel;
+  NotificationsCountModel? get notificationsCountModel => _notificationsCountModel;
 
   ///calling APIs Functions
 
@@ -69,6 +72,17 @@ class NotificationViewModel with ChangeNotifier {
     }
     _isLoading = false;
     notifyListeners();
+    return responseModel;
+  }
+
+  Future<ApiResponse> getNotificationsCount() async {
+    ApiResponse responseModel = await homeRepo.getNotificationsCountRepo(page);
+    if (responseModel.response != null && responseModel.response?.statusCode == 200) {
+      _notificationsCountModel = NotificationsCountModel.fromJson(responseModel.response?.data);
+      notifyListeners();
+    } else {
+      ApiChecker.checkApi(navigator.currentContext!, responseModel);
+    }
     return responseModel;
   }
 

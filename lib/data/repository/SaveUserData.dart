@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:pharma_tech_driver/presentation/modules/auth/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/routing/route.dart';
 import '../../core/utils/app_constants.dart';
@@ -94,7 +95,7 @@ class SaveUserData {
     await sharedPreferences.remove(AppConstants.userData);
     await sharedPreferences.remove(AppConstants.userTOKEN);
     await sharedPreferences.remove(AppConstants.title);
-    pushAndRemoveUntil(const Splash());
+    pushAndRemoveUntil(Login());
 
     return true;
   }

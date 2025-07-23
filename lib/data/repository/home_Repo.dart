@@ -49,6 +49,14 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> getNotificationsCountRepo( page) async {
+    try {
+      Response response = await dioClient.get(AppURL.kGetNotificationsCountURI);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
   Future<ApiResponse> deleteNotificationRepo(String id) async {
     try {
       Response response = await dioClient.post(AppURL.kDeleteNotificationsURI + id);

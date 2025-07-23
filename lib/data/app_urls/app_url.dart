@@ -8,6 +8,7 @@ class AppURL {
   static const String kOrdersURI = "delegate/orders/all";
   static const String kOneOrdersURI = "delegate/orders/one";
   static const String kNotificationsURI = "delegate/auth/notifications";
+  static const String kGetNotificationsCountURI = "delegate/auth/getNotificationsCount";
   static const String kUpdateOrderStatusURI = "delegate/orders/updateStatus";
   static const String kContactUsURL = "contact-us";
   static const String kDeleteNotificationsURI = "delegate/auth/deleteNotification/";

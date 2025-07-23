@@ -33,7 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();});
+      Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();
+      Provider.of<NotificationViewModel>(context, listen: false).getNotificationsCount();
+    });
     _loadData();
     super.initState();
   }
@@ -104,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.symmetric(horizontal:2.w),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r),color: AppColors.green),
                       child: Selector<NotificationViewModel, int?>(
-                          selector: (context, counter) => counter.notificationModel?.data?.length??0,
+                          selector: (context, counter) => counter.notificationsCountModel?.data?.countNotifications??0,
                           builder: (context, count, child) {
                           return Text(
                             count.toString(),

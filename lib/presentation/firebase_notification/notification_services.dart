@@ -84,6 +84,7 @@ class NotificationServices {
         .getAllNotification();
     if (notiType == "order") {
       print('111111111111111');
+      Provider.of<NotificationViewModel>(context, listen: false).getNotificationsCount();
       Provider.of<OrderDetailsViewModel>(context, listen: false).getOrder(
           message.data["order_id"].toString());
       Provider.of<HomeViewModel>(context, listen: false).getAllOrders();
@@ -220,6 +221,7 @@ class NotificationServices {
     } else if (notiType == "order") {
       print('444444444');
       Timer(Duration(seconds: isTerminatedApp ? 6 : 0), () {
+        Provider.of<NotificationViewModel>(context, listen: false).getAllNotification();
         push(OrderDetails(orderId: message.data["order_id"].toString(),));
       });
     }

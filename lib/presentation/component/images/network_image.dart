@@ -14,7 +14,9 @@ class CommonNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Stack(
+    return
+       imageUrl == null || imageUrl == ""  ? SizedBox():
+      Stack(
       children:[
       CachedNetworkImage(
         fit: fit,

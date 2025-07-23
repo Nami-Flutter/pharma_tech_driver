@@ -42,11 +42,11 @@ ThemeData getAppTheme(){
     ),
 
     //CARED THEME
-    cardTheme: CardTheme(
-      color: AppColors.primaryColor,
-      shadowColor: AppColors.primaryColor,
-      elevation: AppSize.s4,
-    )
+    // cardTheme: CardTheme(
+    //   color: AppColors.primaryColor,
+    //   shadowColor: AppColors.primaryColor,
+    //   elevation: AppSize.s4,
+    // )
 
   );
 }
