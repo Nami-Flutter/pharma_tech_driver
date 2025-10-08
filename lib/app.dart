@@ -1,5 +1,5 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:pharma_tech_driver/presentation/firebase_notification/notification_services.dart';
-import 'package:country_code_picker/country_localizations.dart';
 import 'package:easy_localization/easy_localization.dart' as el;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     notificationServices.requestNotificationPermission();
-    notificationServices.requestPermission();
+    //notificationServices.requestPermission();
     notificationServices.forgroundMessage();
     notificationServices.firebaseInit(context);
     notificationServices.setupInteractMessage(context);

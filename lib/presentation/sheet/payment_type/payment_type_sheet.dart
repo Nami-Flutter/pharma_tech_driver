@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pharma_tech_driver/core/extensions/num_extensions.dart';
 import '../../../../core/logger.dart';
 import '../../../../core/res/text_styles.dart';
@@ -156,8 +155,9 @@ class _PaymentTypeSheetState extends State<PaymentTypeSheet> {
 }
 
 Future<dynamic> showPaymentTypeSheet(BuildContext context,{required int requestId}) async {
-  return showMaterialModalBottomSheet(
-    expand: false,
+  return showModalBottomSheet(
+    // is: false,
+
     context: context,
     backgroundColor: Colors.transparent,
     builder: (context) => SafeArea(child: PaymentTypeSheet(requestId:requestId)),

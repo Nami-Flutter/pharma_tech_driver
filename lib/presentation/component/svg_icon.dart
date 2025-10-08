@@ -11,7 +11,23 @@ class SVGIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height:_height?? 24.h,width:_width??  24.w,child: Center(child: SvgPicture.asset(_assets,height: _height??24.h,width: _width??24.w,color: _color,)));
+    if (_assets.isEmpty) {
+      // يمكنك عرض placeholder أو SizedBox فارغ
+      return const SizedBox.shrink();
+    }
+
+    return SizedBox(
+      height: _height ?? 24.h,
+      width: _width ?? 24.w,
+      child: Center(
+        child: SvgPicture.asset(
+          _assets,
+          height: _height ?? 24.h,
+          width: _width ?? 24.w,
+          color: _color,
+        ),
+      ),
+    );
   }
 
   const SVGIcon(String assets,{super.key,
