@@ -86,7 +86,7 @@ class CustomTextFieldEmail extends StatelessWidget {
       background: background,
       prefixIcon: iconData,
       // prefixIcon: iconData??Icons.email_outlined,
-      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child:iconSVG!=null? SvgPicture.asset(iconSVG??Assets.svgEmailIcon,height: 20.r,width: 20.r):SizedBox(height: 20.r,width: 20.r))),
+      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child:iconSVG!=null&&iconSVG!=""? SvgPicture.asset(iconSVG??Assets.svgEmailIcon,height: 20.r,width: 20.r):SizedBox(height: 20.r,width: 20.r))),
 
       defaultValue: defaultValue,
       hint: hint,

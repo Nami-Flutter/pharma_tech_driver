@@ -97,7 +97,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
     return CustomTextField(
       background: widget.background,
       prefixIcon: widget.iconData ?? Icons.lock_outlined,
-      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child: SvgPicture.asset(widget.iconSVG??Assets.svgPasswordIcon,height: 20.r,width: 20.r))),
+      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child: widget.iconSVG!=null&&widget.iconSVG!=""?SvgPicture.asset(widget.iconSVG??Assets.svgPasswordIcon,height: 20.r,width: 20.r):SizedBox(height: 20.r,width: 20.r))),
 
       defaultValue: widget.defaultValue,
       hint: widget.hint,

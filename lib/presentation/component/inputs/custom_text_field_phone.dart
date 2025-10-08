@@ -92,7 +92,7 @@ class CustomTextFieldPhone extends StatelessWidget {
     return CustomTextField(
       background: background,
       prefixIcon: iconData,
-      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child: SvgPicture.asset(iconSVG??Assets.svgPhoneIcon,height: 20.r,width: 20.r))),
+      prefixWidget: SizedBox(height: 20.r,width: 20.r,child: Center(child: iconSVG!=null&&iconSVG!=""? SvgPicture.asset(iconSVG??Assets.svgPhoneIcon,height: 20.r,width: 20.r):SizedBox(height: 20.r,width: 20.r))),
       defaultValue: defaultValue,
 
       hint: hint,
